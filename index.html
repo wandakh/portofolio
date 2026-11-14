@@ -112,6 +112,8 @@ body[data-m=mix] .tl>li{cursor:pointer}body[data-m=mix] .tl>li:not(.open) ul{dis
 @keyframes rowin{from{opacity:0;transform:translateX(-16px)}}@keyframes typing{from{max-width:0}}.res tr{animation:rowin .5s both}.res tr:nth-child(1){animation-delay:.9s}.res tr:nth-child(2){animation-delay:1.15s}.res tr:nth-child(3){animation-delay:1.4s}
 @media(min-width:821px){.q{white-space:nowrap;overflow:hidden;width:max-content;max-width:100%;animation:typing 1.8s steps(52) .2s both}}
 @media(prefers-reduced-motion:reduce){.q,.res tr{animation:none}}
+body[data-m=mix] :is(main>section,.hero,.art){margin-inline:auto}
+body[data-m=mix] :is(header,footer){max-width:none;width:min(1200px,100% - 2*clamp(20px,6vw,96px));margin-inline:auto;padding-inline:0}
 body[data-m=mix] #sertifikat{position:relative;isolation:isolate;padding:88px 0 80px;color:var(--tx);--bg:#EEF0F8;--panel:#fff;--line:#C9CDE2;--tx:#1B1C33;--soft:#5A5D7C;--vi:#7B61FF;--pk:#0D99FF;--sbg:radial-gradient(#B9BEDB 1.3px,transparent 1.4px) 0 0/24px 24px,#EEF0F8;font-family:"Plus Jakarta Sans",sans-serif}
 body[data-m=mix] #kontak{position:relative;isolation:isolate;padding-top:88px;padding-bottom:96px;color:var(--tx);--bg:#EEF0F8;--panel:#fff;--line:#C9CDE2;--tx:#1B1C33;--soft:#5A5D7C;--vi:#7B61FF;--pk:#0D99FF;--sbg:radial-gradient(#B9BEDB 1.3px,transparent 1.4px) 0 0/24px 24px,#EEF0F8;font-family:"Plus Jakarta Sans",sans-serif}
 body[data-m=mix] :is(#sertifikat,#kontak)::before{content:"";position:absolute;top:0;bottom:0;left:-100vw;right:-100vw;z-index:-1;background:var(--sbg)}body[data-m=mix] :is(#sertifikat,#kontak) :is(h2,.mail){font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;letter-spacing:-.03em}
