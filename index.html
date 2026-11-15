@@ -13,11 +13,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description"
     content="Portofolio Wanda Khoirunnisa, mahasiswa S1 Sistem Informasi Telkom University Purwokerto yang fokus pada web development, desain database, dan UI/UX.">
-  <meta property="og:title" content="Wanda Khoirunnisa – Portofolio">
-  <meta property="og:description" content="Web development, desain database, dan UI/UX.">
+  <link rel="canonical" href="https://portofolio-wandakhoirunnisa.vercel.app/">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E0A24'/%3E%3Cpath d='M16 20l14 12-14 12' fill='none' stroke='%238B6CFF' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M36 46h14' stroke='%23FF6FB5' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Wanda Khoirunnisa – Web Developer &amp; UI/UX | Portofolio">
+  <meta property="og:description"
+    content="Mahasiswa Sistem Informasi yang mencari magang di web, backend, full stack, atau UI/UX. Lihat proyek Laravel, desain database, dan Figma.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portofolio-wandakhoirunnisa.vercel.app/">
+  <meta property="og:image" content="https://portofolio-wandakhoirunnisa.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wanda Khoirunnisa, portofolio web development, desain database, dan UI/UX">
+  <meta property="og:locale" content="id_ID">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wanda Khoirunnisa – Web Developer &amp; UI/UX | Portofolio">
+  <meta name="twitter:description" content="Mencari magang di web, backend, full stack, atau UI/UX.">
+  <meta name="twitter:image" content="https://portofolio-wandakhoirunnisa.vercel.app/assets/og-image.png">
+  <meta name="author" content="Wanda Khoirunnisa">
   <meta name="theme-color" content="#0E0A24">
-  <title>Wanda Khoirunnisa – Portofolio</title>
+  <title>Wanda Khoirunnisa – Web Developer &amp; UI/UX | Portofolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&family=Plus+Jakarta+Sans:wght@500;800&family=JetBrains+Mono:wght@500;800&display=swap"
@@ -2216,6 +2231,391 @@
         transform: none
       }
     }
+
+    /* ===== Tahap 1: kartu proyek bergaya carousel (referensi) ===== */
+    #proyek .chips {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 6px;
+      margin: 0 0 34px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px -20px rgba(27, 28, 51, .45)
+    }
+
+    #proyek .chips button {
+      border-color: transparent;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 15px
+    }
+
+    body[data-m] #proyek .proj-carousel {
+      position: relative
+    }
+
+    #proyek .proj-track {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(16px, 2.4vw, 28px);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 4px;
+      padding: 14px 4px 34px;
+      margin: -14px -4px -10px;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none
+    }
+
+    #proyek .proj-track::-webkit-scrollbar {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .proj {
+      flex: 0 0 clamp(290px, 46%, 500px);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 0;
+      padding: 16px 16px 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      box-shadow: 0 18px 40px -26px rgba(27, 28, 51, .5)
+    }
+
+    body[data-m] #proyek .proj-track .proj::before,
+    body[data-m] #proyek .proj-track .proj::after {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .proj[hidden] {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .proj.rv {
+      opacity: 1 !important;
+      translate: none !important
+    }
+
+    body[data-m] #proyek .proj-track .proj-progress {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .shot {
+      order: -1;
+      padding: 18px 14px;
+      border-radius: 14px
+    }
+
+    body[data-m] #proyek .proj-track .shot::before {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .shot img {
+      transform: none !important;
+      border-radius: 6px
+    }
+
+    body[data-m] #proyek .proj-track .proj>div:first-child {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 2px 8px 0
+    }
+
+    body[data-m] #proyek .proj-track .proj h3 {
+      font-size: 26px;
+      margin-bottom: 6px
+    }
+
+    body[data-m] #proyek .proj-track .sub {
+      font-size: 16px;
+      margin: 0 0 10px
+    }
+
+    body[data-m] #proyek .proj-track .proj>div:first-child>p:not([class]) {
+      font-size: 16px;
+      line-height: 1.55;
+      margin: 0 0 12px
+    }
+
+    body[data-m] #proyek .proj-track .meta {
+      font-size: 15px;
+      margin: 0 0 10px
+    }
+
+    body[data-m] #proyek .proj-track ul {
+      columns: 1;
+      margin: 6px 0 12px;
+      font-size: 15px
+    }
+
+    .carousel-on body[data-m] #proyek .proj-track .proj:not(.open)>div:first-child>p:not([class]) {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden
+    }
+
+    .carousel-on body[data-m] #proyek .proj-track .proj:not(.open) ul {
+      display: none
+    }
+
+    body[data-m] #proyek .proj-track .proj-links {
+      margin-top: auto;
+      padding-top: 14px;
+      gap: 8px
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .more {
+      all: unset;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 99px;
+      background: var(--pkd, var(--pk));
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.4
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .more:hover {
+      filter: brightness(1.12)
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .more:focus-visible {
+      outline: 3px solid var(--pk);
+      outline-offset: 3px
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .more svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .25s
+    }
+
+    body[data-m] #proyek .proj-track .proj.open .proj-links .more svg {
+      transform: rotate(90deg)
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .btn {
+      background: transparent;
+      border: 2px solid var(--pkd, var(--pk));
+      color: var(--pkd, var(--pk));
+      padding: 9px 18px;
+      font-size: 16px
+    }
+
+    body[data-m] #proyek .proj-track .proj-links .btn:hover {
+      background: var(--pkd, var(--pk));
+      color: #fff
+    }
+
+    #proyek .car-btn {
+      all: unset;
+      box-sizing: border-box;
+      cursor: pointer;
+      position: absolute;
+      top: clamp(90px, 12vw, 150px);
+      z-index: 3;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pkd, var(--pk));
+      color: #fff;
+      box-shadow: 0 12px 24px -10px rgba(13, 153, 255, .75);
+      transition: opacity .2s, transform .2s
+    }
+
+    #proyek .car-btn svg {
+      width: 22px;
+      height: 22px
+    }
+
+    #proyek .car-btn.prev {
+      left: -14px
+    }
+
+    #proyek .car-btn.next {
+      right: -14px
+    }
+
+    #proyek .car-btn:hover {
+      transform: scale(1.06)
+    }
+
+    #proyek .car-btn:focus-visible {
+      outline: 3px solid var(--pk);
+      outline-offset: 3px
+    }
+
+    #proyek .car-btn[disabled] {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    @media(max-width:820px) {
+      body[data-m] #proyek .proj-track .proj {
+        flex-basis: 86%;
+        padding: 14px 14px 22px
+      }
+
+      #proyek .chips {
+        display: flex;
+        width: 100%
+      }
+
+      #proyek .chips button {
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 10px 6px;
+        font-size: 14px
+      }
+
+      #proyek .car-btn {
+        width: 42px;
+        height: 42px
+      }
+
+      #proyek .car-btn.prev {
+        left: -6px
+      }
+
+      #proyek .car-btn.next {
+        right: -6px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      #proyek .car-btn,
+      body[data-m] #proyek .proj-track .proj-links .more svg {
+        transition: none
+      }
+
+      #proyek .car-btn:hover {
+        transform: none
+      }
+    }
+
+    /* ===== Tahap 1b: tab Proyek | Sertifikat ===== */
+    #proyek .tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      padding: 8px;
+      margin: 0 0 30px;
+      max-width: 640px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 14px 34px -22px rgba(27, 28, 51, .45)
+    }
+
+    #proyek .tabs button {
+      all: unset;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 10px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--tx);
+      transition: background .2s, color .2s
+    }
+
+    #proyek .tabs button svg {
+      width: 24px;
+      height: 24px
+    }
+
+    #proyek .tabs button:hover {
+      background: rgba(13, 153, 255, .1)
+    }
+
+    #proyek .tabs button[aria-selected=true] {
+      background: var(--pkd, var(--pk));
+      color: #fff
+    }
+
+    #proyek .tabs button:focus-visible {
+      outline: 3px solid var(--pk);
+      outline-offset: 3px
+    }
+
+    #proyek [role=tabpanel][hidden] {
+      display: none
+    }
+
+    #proyek [role=tabpanel].tab-in {
+      animation: tabin .35s ease both
+    }
+
+    @keyframes tabin {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+    }
+
+    #proyek .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 0 0 28px;
+      background: none;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0
+    }
+
+    #proyek .chips button {
+      border: 2px solid var(--line);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 15px
+    }
+
+    @media(max-width:820px) {
+      #proyek .tabs button {
+        font-size: 15px;
+        padding: 12px 6px
+      }
+
+      #proyek .chips {
+        display: flex;
+        width: auto
+      }
+
+      #proyek .chips button {
+        flex: 0 1 auto;
+        padding: 8px 14px;
+        font-size: 14px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      #proyek [role=tabpanel].tab-in {
+        animation: none
+      }
+    }
   </style>
 </head>
 
@@ -2240,9 +2640,9 @@
       <span class="dot-pip"><span class="dot-pip-fill"></span></span>
       <span class="dot-tip">Tentang · 0%</span>
     </button>
-    <button type="button" class="dot-btn" data-target="proyek" data-name="Proyek" aria-label="Proyek">
+    <button type="button" class="dot-btn" data-target="proyek" data-name="Portofolio" aria-label="Portofolio">
       <span class="dot-pip"><span class="dot-pip-fill"></span></span>
-      <span class="dot-tip">Proyek · 0%</span>
+      <span class="dot-tip">Portofolio · 0%</span>
     </button>
     <button type="button" class="dot-btn" data-target="pengalaman" data-name="Pengalaman" aria-label="Pengalaman">
       <span class="dot-pip"><span class="dot-pip-fill"></span></span>
@@ -2251,10 +2651,6 @@
     <button type="button" class="dot-btn" data-target="keahlian" data-name="Keahlian" aria-label="Keahlian">
       <span class="dot-pip"><span class="dot-pip-fill"></span></span>
       <span class="dot-tip">Keahlian · 0%</span>
-    </button>
-    <button type="button" class="dot-btn" data-target="sertifikat" data-name="Sertifikat" aria-label="Sertifikat">
-      <span class="dot-pip"><span class="dot-pip-fill"></span></span>
-      <span class="dot-tip">Sertifikat · 0%</span>
     </button>
     <button type="button" class="dot-btn" data-target="kontak" data-name="Kontak" aria-label="Kontak">
       <span class="dot-pip"><span class="dot-pip-fill"></span></span>
@@ -2320,6 +2716,7 @@
       <div class="a-db"></div>
       <div class="a-ux"></div>
     </div>
+
     <section id="tentang" data-label="Tentang" data-theme="dark">
       <h2>Tentang</h2>
       <div class="about">
@@ -2333,88 +2730,154 @@
       </div>
     </section>
 
-    <section id="proyek" data-label="Proyek" data-theme="light">
-      <h2>Proyek</h2>
-      <div class="chips" role="group" aria-label="Filter proyek"><button data-f="all"
-          aria-pressed="true">Semua</button><button data-f="web" aria-pressed="false">Web</button><button data-f="db"
-          aria-pressed="false">Database</button><button data-f="ux" aria-pressed="false">UI/UX</button></div>
-      <article class="proj">
-        <div>
-          <div class="proj-progress"><span>PROYEK 01 / 03</span><span class="proj-progress-bar"><span
-                class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
-          <h3>Visual Data</h3>
-          <p class="sub">Sistem monitoring dan visualisasi data penjualan</p>
-          <p>Aplikasi web internal berbasis Laravel untuk mendigitalkan pengelolaan, pemantauan, dan visualisasi data
-            transaksi penjualan, dengan dashboard interaktif untuk analisis margin dan pelaporan.</p>
-          <ul>
-            <li>Autentikasi dan role</li>
-            <li>CRUD data transaksi</li>
-            <li>Import dan export Excel</li>
-            <li>Dashboard visualisasi</li>
-            <li>Filter data</li>
-            <li>Perhitungan margin</li>
-          </ul>
-          <p class="meta"><b>Peran:</b> Full Stack Developer</p>
-          <p class="tgs" aria-label="Teknologi"><span class="tg">Laravel</span><span class="tg">PHP</span><span
-              class="tg">MySQL</span><span class="tg">Bootstrap</span><span class="tg">Chart.js</span></p>
-          <div class="proj-links"><a class="btn" target="_blank" rel="noopener"
-              href="https://github.com/wandakh/visual-data/tree/rombak-v12">Lihat repository</a></div>
+    <section id="proyek" data-label="Portofolio" data-theme="light">
+      <h2>Portofolio</h2>
+      <div class="tabs" role="tablist" aria-label="Bagian portofolio">
+        <button type="button" role="tab" id="tab-proyek" aria-selected="true" aria-controls="panel-proyek"
+          data-tab="proyek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+          </svg><span>Proyek</span></button>
+        <button type="button" role="tab" id="tab-sertifikat" aria-selected="false" aria-controls="panel-sertifikat"
+          tabindex="-1" data-tab="sertifikat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="9" r="5.5" />
+            <path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5" />
+          </svg><span>Sertifikat</span></button>
+      </div>
+
+      <div role="tabpanel" id="panel-proyek" aria-labelledby="tab-proyek">
+        <div class="chips" role="group" aria-label="Filter proyek"><button data-f="all"
+            aria-pressed="true">Semua</button><button data-f="web" aria-pressed="false">Web</button><button data-f="db"
+            aria-pressed="false">Database</button><button data-f="ux" aria-pressed="false">UI/UX</button></div>
+        <div class="proj-carousel">
+          <div class="proj-track" id="proj-track" tabindex="0" role="region"
+            aria-label="Daftar proyek, geser ke samping">
+            <article class="proj">
+              <div>
+                <div class="proj-progress"><span>PROYEK 01 / 03</span><span class="proj-progress-bar"><span
+                      class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
+                <h3>Visual Data</h3>
+                <p class="sub">Sistem monitoring dan visualisasi data penjualan</p>
+                <p>Aplikasi web internal berbasis Laravel untuk mendigitalkan pengelolaan, pemantauan, dan visualisasi
+                  data
+                  transaksi penjualan, dengan dashboard interaktif untuk analisis margin dan pelaporan.</p>
+                <ul>
+                  <li>Autentikasi dan role</li>
+                  <li>CRUD data transaksi</li>
+                  <li>Import dan export Excel</li>
+                  <li>Dashboard visualisasi</li>
+                  <li>Filter data</li>
+                  <li>Perhitungan margin</li>
+                </ul>
+                <p class="meta"><b>Peran:</b> Full Stack Developer</p>
+                <p class="tgs" aria-label="Teknologi"><span class="tg">Laravel</span><span class="tg">PHP</span><span
+                    class="tg">MySQL</span><span class="tg">Bootstrap</span><span class="tg">Chart.js</span></p>
+                <div class="proj-links"><a class="btn" target="_blank" rel="noopener"
+                    href="https://github.com/wandakh/visual-data/tree/rombak-v12">Lihat repository</a></div>
+              </div>
+              <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/visual-data.webp"
+                  alt="Dashboard Visual Data di laptop"></div>
+            </article>
+            <article class="proj">
+              <div>
+                <div class="proj-progress"><span>PROYEK 02 / 03</span><span class="proj-progress-bar"><span
+                      class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
+                <h3>Catering Database</h3>
+                <p class="sub">Sistem database layanan catering sehat</p>
+                <p>Arsitektur basis data relasional untuk layanan catering sehat, dengan konsep relasional lanjutan agar
+                  proses bisnis otomatis, terjaga integritasnya, dan terhubung dari awal sampai akhir.</p>
+                <ul>
+                  <li>ERD</li>
+                  <li>Normalisasi</li>
+                  <li>Stored procedure</li>
+                  <li>Trigger</li>
+                  <li>Transaction management</li>
+                  <li>Business rules</li>
+                </ul>
+                <p class="meta"><b>Peran:</b> Database Design dan SQL Developer</p>
+                <p class="tgs" aria-label="Teknologi"><span class="tg">MySQL</span><span class="tg">DBeaver</span><span
+                    class="tg">phpMyAdmin</span><span class="tg">Laragon</span></p>
+                <div class="proj-links"><a class="btn" target="_blank" rel="noopener"
+                    href="https://github.com/wandakh/healthy-catering-database">Lihat repository</a></div>
+              </div>
+              <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/catering-db.webp"
+                  alt="Kode SQL Catering Database di laptop"></div>
+            </article>
+            <article class="proj">
+              <div>
+                <div class="proj-progress"><span>PROYEK 03 / 03</span><span class="proj-progress-bar"><span
+                      class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
+                <h3>Nugasin</h3>
+                <p class="sub">Aplikasi manajemen tugas dan pencegah burnout</p>
+                <p>Aplikasi berbasis UI/UX yang membantu mahasiswa mengelola tugas dan produktivitas sambil menjaga
+                  keseimbangan dengan kesehatan mental. Fitur Burnout Guard dirancang dari analisis masalah pengguna.
+                </p>
+                <ul>
+                  <li>Smart Task Management</li>
+                  <li>Burnout Guard</li>
+                  <li>Weekly Review</li>
+                  <li>Productivity Heatmap</li>
+                  <li>Milestone Planner</li>
+                  <li>Streak Tracking</li>
+                </ul>
+                <p class="meta"><b>Peran:</b> Product Designer dan UI/UX Designer</p>
+                <p class="tgs" aria-label="Teknologi"><span class="tg">Figma</span><span class="tg">FigJam</span></p>
+                <div class="proj-links"><a class="btn"
+                    href="https://www.figma.com/proto/q1J5PwrZ7FQYCFnihoTZy5/Nugasin?node-id=1-4900&amp;p=f&amp;t=RGcLmRd9UATpaIuC-0&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A4569&amp;show-proto-sidebar=1"
+                    target="_blank" rel="noopener">Lihat prototype</a> <a class="btn"
+                    href="https://www.figma.com/design/q1J5PwrZ7FQYCFnihoTZy5/Nugasin?node-id=0-1&amp;t=1Fv6lbA6RXTAW9g9-1"
+                    target="_blank" rel="noopener">Lihat desain Figma</a></div>
+              </div>
+              <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/nugasin.webp"
+                  alt="Tampilan dashboard Nugasin di laptop"></div>
+            </article>
+          </div>
+          <button type="button" class="car-btn prev" aria-label="Proyek sebelumnya"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" />
+            </svg></button>
+          <button type="button" class="car-btn next" aria-label="Proyek berikutnya"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg></button>
         </div>
-        <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/visual-data.webp"
-            alt="Dashboard Visual Data di laptop"></div>
-      </article>
-      <article class="proj">
-        <div>
-          <div class="proj-progress"><span>PROYEK 02 / 03</span><span class="proj-progress-bar"><span
-                class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
-          <h3>Catering Database</h3>
-          <p class="sub">Sistem database layanan catering sehat</p>
-          <p>Arsitektur basis data relasional untuk layanan catering sehat, dengan konsep relasional lanjutan agar
-            proses bisnis otomatis, terjaga integritasnya, dan terhubung dari awal sampai akhir.</p>
-          <ul>
-            <li>ERD</li>
-            <li>Normalisasi</li>
-            <li>Stored procedure</li>
-            <li>Trigger</li>
-            <li>Transaction management</li>
-            <li>Business rules</li>
-          </ul>
-          <p class="meta"><b>Peran:</b> Database Design dan SQL Developer</p>
-          <p class="tgs" aria-label="Teknologi"><span class="tg">MySQL</span><span class="tg">DBeaver</span><span
-              class="tg">phpMyAdmin</span><span class="tg">Laragon</span></p>
-          <div class="proj-links"><a class="btn" target="_blank" rel="noopener"
-              href="https://github.com/wandakh/healthy-catering-database">Lihat repository</a></div>
-        </div>
-        <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/catering-db.webp"
-            alt="Kode SQL Catering Database di laptop"></div>
-      </article>
-      <article class="proj">
-        <div>
-          <div class="proj-progress"><span>PROYEK 03 / 03</span><span class="proj-progress-bar"><span
-                class="proj-progress-fill"></span></span><span class="proj-progress-pct">0%</span></div>
-          <h3>Nugasin</h3>
-          <p class="sub">Aplikasi manajemen tugas dan pencegah burnout</p>
-          <p>Aplikasi berbasis UI/UX yang membantu mahasiswa mengelola tugas dan produktivitas sambil menjaga
-            keseimbangan dengan kesehatan mental. Fitur Burnout Guard dirancang dari analisis masalah pengguna.</p>
-          <ul>
-            <li>Smart Task Management</li>
-            <li>Burnout Guard</li>
-            <li>Weekly Review</li>
-            <li>Productivity Heatmap</li>
-            <li>Milestone Planner</li>
-            <li>Streak Tracking</li>
-          </ul>
-          <p class="meta"><b>Peran:</b> Product Designer dan UI/UX Designer</p>
-          <p class="tgs" aria-label="Teknologi"><span class="tg">Figma</span><span class="tg">FigJam</span></p>
-          <div class="proj-links"><a class="btn"
-              href="https://www.figma.com/proto/q1J5PwrZ7FQYCFnihoTZy5/Nugasin?node-id=1-4900&amp;p=f&amp;t=RGcLmRd9UATpaIuC-0&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A4569&amp;show-proto-sidebar=1"
-              target="_blank" rel="noopener">Lihat prototype</a> <a class="btn"
-              href="https://www.figma.com/design/q1J5PwrZ7FQYCFnihoTZy5/Nugasin?node-id=0-1&amp;t=1Fv6lbA6RXTAW9g9-1"
-              target="_blank" rel="noopener">Lihat desain Figma</a></div>
-        </div>
-        <div class="shot"><img loading="lazy" width="1000" height="518" src="assets/nugasin.webp"
-            alt="Tampilan dashboard Nugasin di laptop"></div>
-      </article>
+      </div>
+
+      <div role="tabpanel" id="panel-sertifikat" aria-labelledby="tab-sertifikat" hidden>
+        <h3 class="cg">Penghargaan dan kegiatan</h3>
+        <div class="certs"><button data-full="assets/cert-42-full.webp"><img src="assets/cert-42.webp" width="640"
+              height="455" alt="Sertifikat Asisten Praktikum DEX" loading="lazy"><span><b>Asisten Praktikum
+                DEX</b><small>Telkom University Purwokerto · 2026</small></span></button><button
+            data-full="assets/cert-44-full.webp"><img src="assets/cert-44.webp" width="640" height="452"
+              alt="Sertifikat PKL Terbaik" loading="lazy"><span><b>PKL Terbaik</b><small>IDN Boarding School ·
+                2024</small></span></button><button data-full="assets/cert-46-full.webp"><img src="assets/cert-46.webp"
+              width="640" height="453" alt="Sertifikat IDN Teach" loading="lazy"><span><b>IDN Teach</b><small>IDN
+                Boarding
+                School · 2022</small></span></button></div>
+        <h3 class="cg">Sertifikasi kompetensi</h3>
+        <div class="certs"><button data-full="assets/cert-sap.webp"><img class="pt" src="assets/cert-sap.webp"
+              width="503" height="715" alt="Sertifikat SAP SCM500 Business Processes in Procurement"
+              loading="lazy"><span><b>SAP
+                SCM500: Business Processes in Procurement</b><small>SAP University Partnership ·
+                2026</small></span></button><button data-full="assets/cert-54-full.webp"><img src="assets/cert-54.webp"
+              width="640" height="453" alt="Sertifikat Dicoding Visualisasi Data" loading="lazy"><span><b>Belajar Dasar
+                Visualisasi Data</b><small>Dicoding Indonesia · 2023</small></span></button><button
+            data-full="assets/cert-48-full.webp"><img src="assets/cert-48.webp" width="640" height="454"
+              alt="Sertifikat Dicoding Logic 101" loading="lazy"><span><b>Pengenalan ke Logika Pemrograman (Programming
+                Logic 101)</b><small>Dicoding Indonesia · 2023</small></span></button><button
+            data-full="assets/cert-50-full.webp"><img src="assets/cert-50.webp" width="640" height="453"
+              alt="Sertifikat Dicoding Pengembang Software" loading="lazy"><span><b>Pengembang
+                Software</b><small>Dicoding
+                Indonesia · 2023</small></span></button><button data-full="assets/cert-52-full.webp"><img
+              src="assets/cert-52.webp" width="640" height="453" alt="Sertifikat Dicoding Dasar Web"
+              loading="lazy"><span><b>Dasar Pemrograman Web</b><small>Dicoding Indonesia ·
+                2022</small></span></button><button data-full="assets/cert-56-full.webp"><img src="assets/cert-56.webp"
+              width="640" height="453" alt="Sertifikat Dicoding JavaScript" loading="lazy"><span><b>Dasar Pemrograman
+                JavaScript</b><small>Dicoding Indonesia · 2022</small></span></button></div>
+      </div>
     </section>
 
     <section id="pengalaman" data-label="Pengalaman" data-theme="light">
@@ -2432,7 +2895,8 @@
               <ul>
                 <li>Memfasilitasi praktikum dan menjelaskan konsep UI/UX kepada mahasiswa selama sesi praktikum.</li>
                 <li>Membimbing mahasiswa menyelesaikan studi kasus, merancang <strong>wireframe</strong>, mengembangkan
-                  <strong>prototype</strong>, dan melakukan evaluasi <strong>usability</strong>.</li>
+                  <strong>prototype</strong>, dan melakukan evaluasi <strong>usability</strong>.
+                </li>
                 <li>Memberi umpan balik konstruktif atas hasil praktikum, dan berkolaborasi dengan dosen pengampu dalam
                   penilaian serta rekapitulasi nilai.</li>
               </ul>
@@ -2452,7 +2916,8 @@
               <p>Telkom University Purwokerto</p>
               <ul>
                 <li>Membimbing sekitar 35 mahasiswa S1 Bisnis Digital dari studi kasus, <strong>wireframe</strong>, dan
-                  <strong>prototype</strong> sampai evaluasi <strong>usability</strong>.</li>
+                  <strong>prototype</strong> sampai evaluasi <strong>usability</strong>.
+                </li>
                 <li>Memberi umpan balik tugas dan membantu dosen merekap nilai.</li>
               </ul>
             </div>
@@ -2524,39 +2989,10 @@
       </div>
     </section>
 
-    <section id="sertifikat" data-label="Sertifikat" data-theme="light">
-      <h2>Sertifikat</h2>
-      <h3 class="cg">Penghargaan dan kegiatan</h3>
-      <div class="certs"><button data-full="assets/cert-42-full.webp"><img src="assets/cert-42.webp" width="640"
-            height="455" alt="Sertifikat Asisten Praktikum DEX" loading="lazy"><span><b>Asisten Praktikum
-              DEX</b><small>Telkom University Purwokerto · 2026</small></span></button><button
-          data-full="assets/cert-44-full.webp"><img src="assets/cert-44.webp" width="640" height="452"
-            alt="Sertifikat PKL Terbaik" loading="lazy"><span><b>PKL Terbaik</b><small>IDN Boarding School ·
-              2024</small></span></button><button data-full="assets/cert-46-full.webp"><img src="assets/cert-46.webp"
-            width="640" height="453" alt="Sertifikat IDN Teach" loading="lazy"><span><b>IDN Teach</b><small>IDN Boarding
-              School · 2022</small></span></button></div>
-      <h3 class="cg">Sertifikasi kompetensi</h3>
-      <div class="certs"><button data-full="assets/cert-sap.webp"><img class="pt" src="assets/cert-sap.webp" width="503"
-            height="715" alt="Sertifikat SAP SCM500 Business Processes in Procurement" loading="lazy"><span><b>SAP
-              SCM500: Business Processes in Procurement</b><small>SAP University Partnership ·
-              2026</small></span></button><button data-full="assets/cert-54-full.webp"><img src="assets/cert-54.webp"
-            width="640" height="453" alt="Sertifikat Dicoding Visualisasi Data" loading="lazy"><span><b>Belajar Dasar
-              Visualisasi Data</b><small>Dicoding Indonesia · 2023</small></span></button><button
-          data-full="assets/cert-48-full.webp"><img src="assets/cert-48.webp" width="640" height="454"
-            alt="Sertifikat Dicoding Logic 101" loading="lazy"><span><b>Pengenalan ke Logika Pemrograman (Programming
-              Logic 101)</b><small>Dicoding Indonesia · 2023</small></span></button><button
-          data-full="assets/cert-50-full.webp"><img src="assets/cert-50.webp" width="640" height="453"
-            alt="Sertifikat Dicoding Pengembang Software" loading="lazy"><span><b>Pengembang Software</b><small>Dicoding
-              Indonesia · 2023</small></span></button><button data-full="assets/cert-52-full.webp"><img
-            src="assets/cert-52.webp" width="640" height="453" alt="Sertifikat Dicoding Dasar Web"
-            loading="lazy"><span><b>Dasar Pemrograman Web</b><small>Dicoding Indonesia ·
-              2022</small></span></button><button data-full="assets/cert-56-full.webp"><img src="assets/cert-56.webp"
-            width="640" height="453" alt="Sertifikat Dicoding JavaScript" loading="lazy"><span><b>Dasar Pemrograman
-              JavaScript</b><small>Dicoding Indonesia · 2022</small></span></button></div>
-      <dialog id="dlg" aria-label="Pratinjau sertifikat"><button class="x" aria-label="Tutup">×</button><img id="big"
-          alt=""></dialog>
-    </section>
+    <dialog id="dlg" aria-label="Pratinjau sertifikat"><button class="x" aria-label="Tutup">×</button><img id="big"
+        alt=""></dialog>
   </main>
+
   <footer id="kontak" data-label="Kontak" data-theme="light">
     <h2>Kontak</h2>
     <a class="mail" href="mailto:wandakh172@gmail.com">wandakh172@gmail.com</a>
@@ -2566,6 +3002,7 @@
         href="https://github.com/wandakh">GitHub</a><a
         href="https://www.linkedin.com/in/wanda-khoirunnisa/">LinkedIn</a></div>
   </footer>
+
   <script>
     const Q = { web: "<i>&lt;</i>h1<i>&gt;</i> Wanda Khoirunnisa <i>&lt;/</i>h1<i>&gt;</i> <b>/* siap magang */</b>", db: "<i>SELECT</i> * <i>FROM</i> wanda <i>WHERE</i> status = <b>'siap magang'</b>;", ux: "User flow: <i>Landing</i> → <i>Proyek</i> → <i>Pengalaman</i> → <b>Hubungi saya</b>" };
     const setM = m => { if (!Q[m]) return; document.body.dataset.m = m; document.querySelector('.q').innerHTML = Q[m]; document.querySelectorAll('.sw button').forEach(y => y.setAttribute('aria-pressed', y.dataset.m === m)) }; document.querySelectorAll('.sw button').forEach(x => x.addEventListener('click', () => { setM(x.dataset.m); location.hash = x.dataset.m }));
@@ -2766,6 +3203,98 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
       updateScroll();
+    })();
+  </script>
+
+  <script>
+    /* Tahap 1: carousel proyek + tombol Details */
+    (() => {
+      const track = document.getElementById('proj-track');
+      if (!track) return;
+      const wrap = track.parentElement;
+      const prev = wrap.querySelector('.car-btn.prev'), next = wrap.querySelector('.car-btn.next');
+      const rm = matchMedia('(prefers-reduced-motion:reduce)');
+      document.documentElement.classList.add('carousel-on');
+
+      track.querySelectorAll('.proj').forEach((card, i) => {
+        const links = card.querySelector('.proj-links');
+        const list = card.querySelector('ul');
+        if (!links || !list) return;
+        list.id = 'proj-fitur-' + i;
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'more';
+        more.setAttribute('aria-expanded', 'false');
+        more.setAttribute('aria-controls', list.id);
+        const label = document.createElement('span');
+        label.textContent = 'Details';
+        more.append(label);
+        more.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>');
+        more.addEventListener('click', () => {
+          const open = card.classList.toggle('open');
+          more.setAttribute('aria-expanded', open);
+          label.textContent = open ? 'Tutup' : 'Details';
+        });
+        links.prepend(more);
+      });
+
+      const step = () => {
+        const c = track.querySelector('.proj:not([hidden])');
+        return c ? c.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 24) : 320;
+      };
+      const update = () => {
+        const max = track.scrollWidth - track.clientWidth - 2;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max;
+      };
+      const go = dir => track.scrollBy({ left: dir * step(), behavior: rm.matches ? 'auto' : 'smooth' });
+      prev.addEventListener('click', () => go(-1));
+      next.addEventListener('click', () => go(1));
+      track.addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update, { passive: true });
+      document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
+        track.scrollTo({ left: 0, behavior: 'auto' });
+        setTimeout(update, 0);
+      }));
+      update();
+    })();
+  </script>
+
+  <script>
+    /* Tab Proyek | Sertifikat */
+    (() => {
+      const tabs = [...document.querySelectorAll('#proyek [role=tab]')];
+      if (!tabs.length) return;
+      const panels = Object.fromEntries(tabs.map(t => [t.dataset.tab, document.getElementById(t.getAttribute('aria-controls'))]));
+      const select = (name, focus) => {
+        tabs.forEach(t => {
+          const on = t.dataset.tab === name;
+          t.setAttribute('aria-selected', on);
+          t.tabIndex = on ? 0 : -1;
+          const pn = panels[t.dataset.tab];
+          pn.hidden = !on;
+          pn.classList.remove('tab-in');
+          if (on) { void pn.offsetWidth; pn.classList.add('tab-in'); if (focus) t.focus(); }
+        });
+        dispatchEvent(new Event('resize'));
+      };
+      tabs.forEach((t, i) => {
+        t.addEventListener('click', () => select(t.dataset.tab));
+        t.addEventListener('keydown', e => {
+          const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+          if (k) { e.preventDefault(); select(tabs[(i + k + tabs.length) % tabs.length].dataset.tab, true); }
+          else if (e.key === 'Home') { e.preventDefault(); select(tabs[0].dataset.tab, true); }
+          else if (e.key === 'End') { e.preventDefault(); select(tabs[tabs.length - 1].dataset.tab, true); }
+        });
+      });
+      const fromHash = () => {
+        if (location.hash === '#sertifikat') {
+          select('sertifikat');
+          document.getElementById('proyek').scrollIntoView({ behavior: 'auto' });
+        }
+      };
+      addEventListener('hashchange', fromHash);
+      fromHash();
     })();
   </script>
  <script defer src="/_vercel/insights/script.js"></script>
