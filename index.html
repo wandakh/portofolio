@@ -2579,12 +2579,19 @@
     .xp-item { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 18px; padding-bottom: 30px }
     .xp-item:last-child { padding-bottom: 0 }
     .xp-item:not(:last-child)::after { content: ""; position: absolute; left: 21px; top: 48px; bottom: 4px; width: 2px; background: var(--line) }
-    .xp-n { position: relative; z-index: 1; width: 44px; height: 44px; display: grid; place-items: center; border: 2px solid var(--line); border-radius: 50%; background: var(--panel); color: var(--soft); font: 700 16px/1 "Plus Jakarta Sans", Inter, sans-serif; transition: background .3s, color .3s, border-color .3s }
+    .xp-n { position: relative; z-index: 1; width: 44px; height: 44px; display: grid; place-items: center; border: 2px solid var(--line); border-radius: 50%; background: var(--panel); color: var(--soft); font: 700 16px/1 "Plus Jakarta Sans", Inter, sans-serif; transition: background .3s, color .3s, border-color .3s, opacity .3s }
     .xp-item.is-active .xp-n, .xp-item.is-current .xp-n { background: var(--pkd, var(--pk)); border-color: var(--pkd, var(--pk)); color: #fff }
-    .xp-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px }
-    .xp-org { font-weight: 700; font-size: 17px; line-height: 1.35; color: var(--soft) }
-    .xp-date { font: 500 13px/1.4 "JetBrains Mono", ui-monospace, monospace; padding: 2px 10px; border: 1px solid var(--line); border-radius: 4px; color: var(--soft); white-space: nowrap }
-    .xp-role { margin: 6px 0 0; font: 700 22px/1.25 "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -.01em; color: var(--tx) }
+    .xp-body { min-width: 0; margin: -12px -14px; padding: 12px 14px; border-radius: 14px; transition: opacity .3s, background .25s, box-shadow .25s }
+    /* item yang tidak aktif meredup, terang lagi saat disorot atau difokus */
+            .xp-top { display: flex; align-items: center; justify-content: space-between; gap: 6px 16px }
+    .xp-org { display: flex; align-items: center; gap: 12px; min-width: 0; font-weight: 700; font-size: 17px; line-height: 1.35; color: var(--tx) }
+    .xp-logo { position: relative; flex: 0 0 36px; width: 36px; height: 36px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--pkd, var(--pk)); font: 800 12px/1 "Plus Jakarta Sans", Inter, sans-serif }
+    .xp-logo img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 4px; object-fit: contain; background: #fff }
+    .xp-date { flex: 0 0 auto; font: 500 13px/1.4 "JetBrains Mono", ui-monospace, monospace; padding: 2px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--soft); white-space: nowrap }
+    .xp-role { margin: 14px 0 0; font: 700 22px/1.25 "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -.01em; color: var(--tx) }
+    .xp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 8px 0 0; font-size: 14px; line-height: 1.4; color: var(--soft) }
+    .xp-meta i { width: 4px; height: 4px; border-radius: 50%; background: var(--soft); opacity: .6 }
+    .xp-tag { padding: 1px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--tx); font-size: 13px }
     .xp-btn { all: unset; cursor: pointer; display: inline; color: inherit; font: inherit; letter-spacing: inherit }
     .xp-btn::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 12px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); vertical-align: 4px; transition: transform .3s }
     .xp-item.is-active .xp-btn::after { transform: rotate(-135deg); vertical-align: -2px }
@@ -2599,13 +2606,15 @@
     .xp-js .xp-item.is-active .xp-more { grid-template-rows: 1fr }
     .xp-js .xp-item.is-active .xp-more-in { visibility: visible; transition-delay: 0s }
     @media(max-width:900px) { .xp-grid { grid-template-columns: 1fr; gap: 44px } .xp-role { font-size: 20px } }
-    @media(prefers-reduced-motion:reduce) { .xp-n, .xp-btn::after, .xp-js .xp-more, .xp-js .xp-more-in { transition: none } }
+    @media(max-width:520px) { .xp-top { flex-wrap: wrap } .xp-org { flex: 1 1 100% } }
+    @media(prefers-reduced-motion:reduce) { .xp-n, .xp-body, .xp-btn::after, .xp-js .xp-more, .xp-js .xp-more-in { transition: none } }
 
     /* ===== Kontak dua kartu ===== */
-    .ct-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); align-items: start }
-    .ct-card { padding: clamp(22px, 3vw, 36px); background: var(--panel); border: 1px solid var(--line); border-radius: 22px }
-    .ct-h { margin: 0 0 8px; font: 700 26px/1.2 "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -.01em; color: var(--pkd, var(--pk)) }
-    .ct-sub { margin: 0 0 24px; font-size: 16px; line-height: 1.6; color: var(--soft) }
+    .ct-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 32px); align-items: start }
+    .ct-stack { display: grid; gap: clamp(20px, 3vw, 32px); min-width: 0 }
+    .ct-card { padding: clamp(22px, 3vw, 32px); background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 10px 30px rgba(27, 28, 51, .06) }
+    .ct-h { margin: 0 0 8px; font: 800 24px/1.2 "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -.01em; color: var(--tx) }
+    .ct-sub { margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: var(--soft) }
     .ct-f { margin: 0 0 18px }
     .ct-f label { display: block; margin: 0 0 6px; font-weight: 700; font-size: 15px; color: var(--tx) }
     .ct-f input, .ct-f textarea { box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #F6F7FB; color: var(--tx); font: 400 16px/1.5 "Plus Jakarta Sans", Inter, sans-serif; transition: border-color .2s, background .2s }
@@ -2617,19 +2626,45 @@
     .ct-send { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; padding: 12px 20px; border-radius: 10px; background: var(--pkd, var(--pk)); color: #fff; font-weight: 700; font-size: 16px; transition: filter .2s, transform .2s }
     .ct-send:hover { filter: brightness(1.1) }
     .ct-send:active { transform: scale(.98) }
+    .ct-send:disabled { opacity: .6; cursor: progress }
     .ct-send:focus-visible { outline: 3px solid var(--pk); outline-offset: 3px }
     .ct-status { margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: var(--soft) }
     .ct-status:empty { display: none }
-    .ct-links { list-style: none; margin: 0; padding: 0 }
-    .ct-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; padding: 16px 0; border-top: 1px solid var(--line) }
-    .ct-row:first-child { border-top: 0; padding-top: 0 }
-    .ct-k { flex: 0 0 84px; font: 500 13px/1.4 "JetBrains Mono", ui-monospace, monospace; color: var(--soft) }
-    .ct-v { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; font-weight: 700; font-size: 16px; color: var(--tx); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px }
-    .ct-v:hover { color: var(--pkd, var(--pk)); text-decoration-color: currentColor }
-    .ct-v:focus-visible { outline: 3px solid var(--pk); outline-offset: 3px }
-    .ct-card .cp { box-sizing: border-box; min-height: 44px; padding: 8px 16px; border: 1px solid var(--pkd, var(--pk)); border-radius: 10px; background: transparent; color: var(--pkd, var(--pk)); font: 700 15px/1.3 "Plus Jakarta Sans", Inter, sans-serif; cursor: pointer }
+    /* Temukan saya: baris tautan dengan ikon */
+    .ct-links { list-style: none; margin: 0 0 24px; padding: 0 }
+    .ct-row { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line) }
+    .ct-row:first-child { border-top: 0 }
+    .ct-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 14px 0; text-decoration: none; color: var(--tx) }
+    .ct-ico { flex: 0 0 40px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px }
+    .ct-ico svg { width: 22px; height: 22px }
+    .ct-txt { min-width: 0; display: grid; gap: 2px }
+    .ct-txt b { font-size: 15px; line-height: 1.3 }
+    .ct-txt small { font-size: 13px; line-height: 1.3; color: var(--soft); overflow-wrap: anywhere }
+    .ct-ext { margin-left: auto; flex: 0 0 18px; width: 18px; height: 18px; color: var(--soft); transition: color .2s, transform .2s }
+    .ct-link:hover .ct-ext { color: var(--pkd, var(--pk)); transform: translate(2px, -2px) }
+    .ct-link:hover .ct-txt b { color: var(--pkd, var(--pk)) }
+    .ct-link:focus-visible { outline: 3px solid var(--pk); outline-offset: 2px; border-radius: 10px }
+    .ct-card .cp { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; padding: 8px 14px; border: 1px solid var(--pkd, var(--pk)); border-radius: 10px; background: transparent; color: var(--pkd, var(--pk)); font: 700 14px/1.3 "Plus Jakarta Sans", Inter, sans-serif; cursor: pointer }
     .ct-card .cp:hover { background: var(--pkd, var(--pk)); color: #fff }
-    @media(max-width:900px) { .ct-grid { grid-template-columns: 1fr } .ct-k { flex-basis: 100% } }
+    .ct-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 18%; border: 1px solid var(--line); border-radius: 14px; background: #DDE0F0 }
+    /* Komentar */
+    .cm-head { display: flex; align-items: center; gap: 14px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line) }
+    .cm-head .ct-h { margin: 0 }
+    .cm-ico { flex: 0 0 44px; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: #E8F3FF; color: var(--pkd, var(--pk)) }
+    .cm-ico svg { width: 22px; height: 22px }
+    .cm-count { color: var(--pkd, var(--pk)) }
+    .cm-list { list-style: none; margin: 28px 0 0; padding: 0; max-height: 440px; overflow-y: auto }
+    .cm-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line) }
+    .cm-item:last-child { border-bottom: 0 }
+    .cm-av { flex: 0 0 36px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: #EEF0F8; color: var(--soft) }
+    .cm-av svg { width: 20px; height: 20px }
+    .cm-body { flex: 1; min-width: 0 }
+    .cm-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px }
+    .cm-top b { font-size: 15px; overflow-wrap: anywhere }
+    .cm-top time { flex: 0 0 auto; font-size: 13px; color: var(--soft) }
+    .cm-body p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--tx); overflow-wrap: anywhere; white-space: pre-line }
+    .cm-empty { padding: 8px 0; font-size: 15px; color: var(--soft) }
+    @media(max-width:900px) { .ct-grid { grid-template-columns: 1fr } }
   
     /* ===== Hero "Welcome to my Portfolio" + Tentang tiga kolom ===== */
     /* [ISI: background hero] ganti nilai --hero-bg, mis. url(assets/bg-hero.jpg) center/cover, kalau sudah punya gambar */
@@ -2666,6 +2701,54 @@
       #tentang .ab-cta { justify-content: center }
       #tentang .ab-facts { margin-top: 40px }
     }
+  
+    /* ===== Gabungan Tentang + Pendidikan/Pengalaman, hero polos, animasi ===== */
+    .hero .q { display: none }
+    .scue { position: absolute; left: 50%; bottom: clamp(20px, 5vh, 44px); width: 26px; height: 42px; margin-left: -13px; border: 2px solid var(--soft); border-radius: 14px; pointer-events: none; transition: opacity .4s }
+    .scue i { position: absolute; left: 50%; top: 7px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--pk); animation: scwheel 1.7s ease-in-out infinite }
+    .scue.gone { opacity: 0 }
+    @keyframes scwheel { 0% { opacity: 0; transform: translateY(0) } 30% { opacity: 1 } 100% { opacity: 0; transform: translateY(14px) } }
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-copy { animation: heroOut linear both; animation-timeline: scroll(root); animation-range: 0 55vh }
+        @keyframes heroOut { to { opacity: 0; scale: .92 } }
+      }
+    }
+    #tentang .xp-grid { margin-top: clamp(72px, 10vw, 128px) }
+    #tentang .xp-h { font-size: 24px }
+    #tentang .xp-item.is-active .xp-n, #tentang .xp-item.is-current .xp-n { background: #fff; border-color: #fff; color: #0E0A24 }
+    #tentang .xp-logo { color: var(--vi) }
+    #tentang .xp-btn:hover { color: var(--vi) }
+    #tentang .xp-more-in .bdg { color: #0E0A24 }
+    .js .rv.in { transition-delay: var(--d, 0s) }
+    .pnav a.pop { animation: pnpop .5s cubic-bezier(.3, 1.5, .4, 1) }
+    @keyframes pnpop { 0% { transform: scale(.86) } 60% { transform: scale(1.1) } 100% { transform: scale(1) } }
+    .ct-ico { transition: transform .3s cubic-bezier(.3, 1.5, .4, 1) }
+    .ct-link:hover .ct-ico { transform: scale(1.1) rotate(-5deg) }
+    .ct-link:active .ct-ico { transform: scale(.9) }
+    .ct-card .cp:active, .ct-send:active, .hbtn:active { transform: scale(.95) }
+    @media (prefers-reduced-motion: reduce) {
+      .scue i, .pnav a.pop { animation: none }
+      .ct-ico { transition: none }
+      .ct-link:hover .ct-ico { transform: none }
+    }
+  
+    /* ===== Pendidikan/Pengalaman: hover kartu, 3 item terlihat, sisanya di-scroll ===== */
+    .xp-list { position: relative; padding: 12px 14px; margin: -12px -14px }
+    .xp-item:hover .xp-body, .xp-item:focus-within .xp-body { background: rgba(139, 108, 255, .1); box-shadow: inset 0 0 0 1px var(--line) }
+    .xp-list:hover .xp-item:not(:hover):not(:focus-within) :is(.xp-body, .xp-n) { opacity: .45 }
+    .xp-col:hover .xp-h { color: var(--vi) }
+    .xp-h { transition: color .25s }
+    .xp-scroll { overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent }
+    .xp-scroll:not(.at-end) { -webkit-mask-image: linear-gradient(#000 calc(100% - 44px), transparent); mask-image: linear-gradient(#000 calc(100% - 44px), transparent) }
+    .xp-role { position: relative; padding-right: 30px }
+    .xp-btn::after { position: absolute; right: 8px; top: .42em; margin: 0; vertical-align: baseline }
+    .xp-item.is-active .xp-btn::after { top: .55em; vertical-align: baseline }
+    #tentang { padding-bottom: clamp(56px, 8vw, 96px) }
+    #tentang .ab-text .ab-status { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); font-size: 14px; line-height: 1.4; max-width: none }
+    .ab-status span { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; box-shadow: 0 0 0 0 rgba(74, 222, 128, .6); animation: abpulse 2s ease-out infinite }
+    @keyframes abpulse { to { box-shadow: 0 0 0 9px rgba(74, 222, 128, 0) } }
+    @media (prefers-reduced-motion: reduce) { .ab-status span { animation: none } .xp-body, .xp-h { transition: none } }
   </style>
 </head>
 
@@ -2681,7 +2764,6 @@
     <a href="#intro" data-target="intro">Home</a>
     <a href="#tentang" data-target="tentang">Tentang</a>
     <a href="#proyek" data-target="proyek">Portofolio</a>
-    <a href="#pengalaman" data-target="pengalaman">Pengalaman</a>
     <a href="#keahlian" data-target="keahlian">Keahlian</a>
     <a href="#kontak" data-target="kontak">Kontak</a>
   </nav>
@@ -2699,11 +2781,8 @@
       <div class="hero-copy" data-s=".06">
         <p class="q"><i>SELECT</i> * <i>FROM</i> wanda <i>WHERE</i> status = <b>'siap magang'</b>;</p>
         <h1><span>Welcome to my</span><span>Portfolio</span></h1>
-        <div class="cta-row"><a class="hbtn p" href="#proyek">View Projects</a><a class="hbtn hbtn-dl"
-            href="assets/CV_Wanda_Khoirunnisa.pdf" download>Download CV</a><a class="hbtn"
-            href="https://github.com/wandakh" target="_blank" rel="noopener">GitHub</a><a class="hbtn"
-            href="https://www.linkedin.com/in/wanda-khoirunnisa/" target="_blank" rel="noopener">LinkedIn</a></div>
       </div>
+      <span class="scue" aria-hidden="true"><i></i></span>
     </div>
 
     <div class="art">
@@ -2735,27 +2814,112 @@
         </div>
         <div class="ab-text">
           <p>Mahasiswa Sistem Informasi Telkom University Purwokerto yang fokus pada web development, desain database, dan UI/UX. Pernah membangun sistem monitoring dan visualisasi data penjualan dengan Laravel dan MySQL saat PKL, dan sekarang menjadi asisten praktikum Design and User Experience serta Basis Data.</p>
+          <p class="ab-status"><span aria-hidden="true"></span>Mencari magang di web, backend, full stack, atau UI/UX</p>
           <div class="ab-cta"><a class="hbtn p" href="#proyek">View Projects</a><a class="hbtn" href="assets/CV_Wanda_Khoirunnisa.pdf" download>Download CV</a></div>
         </div>
       </div>
-      <div class="ab-facts">
-        <div class="table-wrap">
-          <table class="res">
-            <tr>
-              <th scope="row">peran</th>
-              <td>Web development, desain database, UI/UX</td>
-            </tr>
-            <tr>
-              <th scope="row">status</th>
-              <td>Mencari magang di web, backend, full stack, atau UI/UX</td>
-            </tr>
-            <tr>
-              <th scope="row">kampus</th>
-              <td>Telkom University Purwokerto</td>
-            </tr>
-          </table><br>
+      <div class="xp-grid">
+        <div class="xp-col">
+          <h3 class="xp-h">Pendidikan</h3>
+          <ol class="xp-list">
+          <li class="xp-item is-current">
+            <span class="xp-n" aria-hidden="true">1</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">TU<img src="assets/logo-telkom-university.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>Telkom University Purwokerto</span><time class="xp-date">2025 – sekarang</time></div>
+              <h4 class="xp-role">S1 Sistem Informasi</h4>
+              <p class="xp-meta"><span class="xp-tag">Undergraduate</span></p>
+            </div>
+          </li>
+          <li class="xp-item">
+            <span class="xp-n" aria-hidden="true">2</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">IDN<img src="assets/logo-idn-boarding-school.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>IDN Boarding School</span><time class="xp-date">2021 – 2024</time></div>
+              <h4 class="xp-role">Rekayasa Perangkat Lunak</h4>
+              <p class="xp-meta"><span class="xp-tag">SMK</span></p>
+            </div>
+          </li>
+          </ol>
         </div>
-       
+        <div class="xp-col">
+          <h3 class="xp-h">Pengalaman</h3>
+          <ol class="xp-list" id="xp-exp">
+          <li class="xp-item" data-acc>
+            <span class="xp-n" aria-hidden="true">1</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">TU<img src="assets/logo-telkom-university.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>Laboratorium Telkom University Purwokerto</span><time class="xp-date">Sep 2026 – sekarang</time></div>
+              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Asisten Praktikum DEX dan Basis Data</button></h4>
+              <p class="xp-meta">Design and User Experience, Basis Data<i></i><span class="xp-tag">Asisten praktikum</span></p>
+              <div class="xp-more"><div class="xp-more-in">
+                <h5>Design and User Experience</h5>
+              <ul>
+                <li>Memfasilitasi praktikum dan menjelaskan konsep UI/UX kepada mahasiswa selama sesi praktikum.</li>
+                <li>Membimbing mahasiswa menyelesaikan studi kasus, merancang <strong>wireframe</strong>, mengembangkan
+                  <strong>prototype</strong>, dan melakukan evaluasi <strong>usability</strong>.
+                </li>
+                <li>Memberi umpan balik konstruktif atas hasil praktikum, dan berkolaborasi dengan dosen pengampu dalam
+                  penilaian serta rekapitulasi nilai.</li>
+              </ul>
+              <h5>Basis Data</h5>
+              <ul>
+                <li>Membimbing mahasiswa Bisnis Digital menerapkan konsep dasar manajemen basis data.</li>
+                <li>Mendampingi mahasiswa menyelesaikan kendala query <strong>SQL</strong>, <strong>ERD</strong>, dan
+                  normalisasi, serta troubleshooting konfigurasi environment.</li>
+                <li>Menilai laporan praktikum berdasarkan <strong>rubrik</strong>, dan berkolaborasi dengan asisten
+                  senior untuk menyelaraskan modul dan standar penilaian.</li>
+              </ul>
+              </div></div>
+            </div>
+          </li>
+          <li class="xp-item" data-acc>
+            <span class="xp-n" aria-hidden="true">2</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">TU<img src="assets/logo-telkom-university.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>Telkom University Purwokerto</span><time class="xp-date">Mar – Jun 2026</time></div>
+              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Asisten praktikum Design and User Experience</button></h4>
+              <p class="xp-meta">S1 Bisnis Digital<i></i><span class="xp-tag">Asisten praktikum</span></p>
+              <div class="xp-more"><div class="xp-more-in">
+                <ul>
+                <li>Membimbing sekitar 35 mahasiswa S1 Bisnis Digital dari studi kasus, <strong>wireframe</strong>, dan
+                  <strong>prototype</strong> sampai evaluasi <strong>usability</strong>.
+                </li>
+                <li>Memberi umpan balik tugas dan membantu dosen merekap nilai.</li>
+              </ul>
+              </div></div>
+            </div>
+          </li>
+          <li class="xp-item" data-acc>
+            <span class="xp-n" aria-hidden="true">3</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">KSS<img src="assets/logo-kinarya-selaras-solusi.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>PT Kinarya Selaras Solusi</span><time class="xp-date">Jul 2023 – Mei 2024</time></div>
+              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Web Developer Intern</button></h4>
+              <p class="xp-meta">Laravel, MySQL<i></i><span class="xp-tag">Magang</span></p>
+              <div class="xp-more"><div class="xp-more-in">
+                <ul>
+                <li>Merancang dan mengembangkan sistem monitoring dan visualisasi data penjualan dengan Laravel,
+                  termasuk arsitektur database MySQL.</li>
+                <li>Menguji dan men-debug sistem agar fungsional, aman, dan stabil.</li>
+                <li><span class="bdg">PKL Terbaik</span> Dianugerahi oleh IDN Boarding School atas dedikasi, kualitas
+                  kode, dan performa kerja selama magang.</li>
+              </ul>
+              </div></div>
+            </div>
+          </li>
+          <li class="xp-item" data-acc>
+            <span class="xp-n" aria-hidden="true">4</span>
+            <div class="xp-body">
+              <div class="xp-top"><span class="xp-org"><span class="xp-logo" aria-hidden="true">IDN<img src="assets/logo-idn-boarding-school.png" alt="" width="36" height="36" loading="lazy" onerror="this.remove()"></span>IDN IT Camp, IDN Boarding School</span><time class="xp-date">12 – 13 Nov 2022</time></div>
+              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Mentor HTML dan CSS</button></h4>
+              <p class="xp-meta">HTML, CSS<i></i><span class="xp-tag">Mentor</span></p>
+              <div class="xp-more"><div class="xp-more-in">
+                <ul>
+                <li>Mengajarkan dasar HTML dan CSS, mendampingi peserta membangun halaman web pertama mereka, dan
+                  memberi umpan balik.</li>
+              </ul>
+              </div></div>
+            </div>
+          </li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <section id="proyek" data-label="Portofolio" data-theme="light">
@@ -2907,107 +3071,6 @@
                 JavaScript</b><small>Dicoding Indonesia · 2022</small></span></button></div>
       </div>
     </section>
-
-    <section id="pengalaman" data-label="Pengalaman" data-theme="light">
-      <h2>Pengalaman</h2>
-      <div class="xp-grid">
-        <div class="xp-col">
-          <h3 class="xp-h">Pendidikan</h3>
-          <ol class="xp-list">
-          <li class="xp-item is-current">
-            <span class="xp-n" aria-hidden="true">1</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">Telkom University Purwokerto</span><time class="xp-date">2025 – sekarang</time></div>
-              <h4 class="xp-role">S1 Sistem Informasi</h4>
-            </div>
-          </li>
-          <li class="xp-item">
-            <span class="xp-n" aria-hidden="true">2</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">IDN Boarding School</span><time class="xp-date">2021 – 2024</time></div>
-              <h4 class="xp-role">Rekayasa Perangkat Lunak</h4>
-            </div>
-          </li>
-          </ol>
-        </div>
-        <div class="xp-col">
-          <h3 class="xp-h">Pengalaman kerja</h3>
-          <ol class="xp-list" id="xp-exp">
-          <li class="xp-item" data-acc>
-            <span class="xp-n" aria-hidden="true">1</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">Laboratorium Telkom University Purwokerto</span><time class="xp-date">Sep 2026 – sekarang</time></div>
-              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Asisten Praktikum DEX dan Basis Data</button></h4>
-              <div class="xp-more"><div class="xp-more-in">
-                <h5>Design and User Experience</h5>
-              <ul>
-                <li>Memfasilitasi praktikum dan menjelaskan konsep UI/UX kepada mahasiswa selama sesi praktikum.</li>
-                <li>Membimbing mahasiswa menyelesaikan studi kasus, merancang <strong>wireframe</strong>, mengembangkan
-                  <strong>prototype</strong>, dan melakukan evaluasi <strong>usability</strong>.
-                </li>
-                <li>Memberi umpan balik konstruktif atas hasil praktikum, dan berkolaborasi dengan dosen pengampu dalam
-                  penilaian serta rekapitulasi nilai.</li>
-              </ul>
-              <h5>Basis Data</h5>
-              <ul>
-                <li>Membimbing mahasiswa Bisnis Digital menerapkan konsep dasar manajemen basis data.</li>
-                <li>Mendampingi mahasiswa menyelesaikan kendala query <strong>SQL</strong>, <strong>ERD</strong>, dan
-                  normalisasi, serta troubleshooting konfigurasi environment.</li>
-                <li>Menilai laporan praktikum berdasarkan <strong>rubrik</strong>, dan berkolaborasi dengan asisten
-                  senior untuk menyelaraskan modul dan standar penilaian.</li>
-              </ul>
-              </div></div>
-            </div>
-          </li>
-          <li class="xp-item" data-acc>
-            <span class="xp-n" aria-hidden="true">2</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">Telkom University Purwokerto</span><time class="xp-date">Mar – Jun 2026</time></div>
-              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Asisten praktikum Design and User Experience</button></h4>
-              <div class="xp-more"><div class="xp-more-in">
-                <ul>
-                <li>Membimbing sekitar 35 mahasiswa S1 Bisnis Digital dari studi kasus, <strong>wireframe</strong>, dan
-                  <strong>prototype</strong> sampai evaluasi <strong>usability</strong>.
-                </li>
-                <li>Memberi umpan balik tugas dan membantu dosen merekap nilai.</li>
-              </ul>
-              </div></div>
-            </div>
-          </li>
-          <li class="xp-item" data-acc>
-            <span class="xp-n" aria-hidden="true">3</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">PT Kinarya Selaras Solusi</span><time class="xp-date">Jul 2023 – Mei 2024</time></div>
-              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Web Developer Intern</button></h4>
-              <div class="xp-more"><div class="xp-more-in">
-                <ul>
-                <li>Merancang dan mengembangkan sistem monitoring dan visualisasi data penjualan dengan Laravel,
-                  termasuk arsitektur database MySQL.</li>
-                <li>Menguji dan men-debug sistem agar fungsional, aman, dan stabil.</li>
-                <li><span class="bdg">PKL Terbaik</span> Dianugerahi oleh IDN Boarding School atas dedikasi, kualitas
-                  kode, dan performa kerja selama magang.</li>
-              </ul>
-              </div></div>
-            </div>
-          </li>
-          <li class="xp-item" data-acc>
-            <span class="xp-n" aria-hidden="true">4</span>
-            <div class="xp-body">
-              <div class="xp-top"><span class="xp-org">IDN IT Camp, IDN Boarding School</span><time class="xp-date">12 – 13 Nov 2022</time></div>
-              <h4 class="xp-role"><button type="button" class="xp-btn" aria-expanded="false">Mentor HTML dan CSS</button></h4>
-              <div class="xp-more"><div class="xp-more-in">
-                <ul>
-                <li>Mengajarkan dasar HTML dan CSS, mendampingi peserta membangun halaman web pertama mereka, dan
-                  memberi umpan balik.</li>
-              </ul>
-              </div></div>
-            </div>
-          </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
     <section id="keahlian" data-label="Keahlian" data-theme="db">
       <h2>Keahlian</h2>
       <dl>
@@ -3054,10 +3117,22 @@
   <footer id="kontak" data-label="Kontak" data-theme="light">
     <h2>Kontak</h2>
     <div class="ct-grid">
-      <div class="ct-card">
-        <h3 class="ct-h">Kirim pesan</h3>
-        <p class="ct-sub">Ada pertanyaan soal proyek atau peluang magang? Tulis di sini. Pesanmu akan terbuka di aplikasi email kamu, siap dikirim.</p>
-        <form id="ct-form" novalidate>
+      <div class="ct-card ct-find">
+        <h3 class="ct-h">Temukan saya</h3>
+        <p class="ct-sub">Terbuka untuk peluang magang, kolaborasi, dan networking di bidang web development, database, dan UI/UX.</p>
+        <ul class="ct-links">
+          <li class="ct-row"><a class="ct-link" href="https://www.linkedin.com/in/wanda-khoirunnisa/" target="_blank" rel="noopener"><span class="ct-ico" style="background:#0A66C2"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3a1.97 1.97 0 100 3.94A1.97 1.97 0 005.25 3zM20.44 20h-3.37v-5.6c0-1.34-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V20H9.7V8.5h3.24v1.57h.05c.45-.85 1.55-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.18V20z"/></svg></span><span class="ct-txt"><b>Mari terhubung</b><small>di LinkedIn</small></span><svg class="ct-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg></a></li>
+          <li class="ct-row"><a class="ct-link" href="https://github.com/wandakh" target="_blank" rel="noopener"><span class="ct-ico" style="background:#1B1C33"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.76 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></span><span class="ct-txt"><b>GitHub</b><small>@wandakh</small></span><svg class="ct-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg></a></li>
+          <li class="ct-row"><a class="ct-link" href="mailto:wandakh172@gmail.com"><span class="ct-ico" style="background:#0A67AD"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><span class="ct-txt"><b>Email</b><small>wandakh172@gmail.com</small></span></a><button class="cp" type="button">Salin email</button></li>
+          <li class="ct-row"><a class="ct-link" href="assets/CV_Wanda_Khoirunnisa.pdf" download><span class="ct-ico" style="background:#EEF0F8"><svg viewBox="0 0 24 24" fill="none" stroke="#5A5D7C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span><span class="ct-txt"><b>Curriculum Vitae</b><small>Download CV (PDF)</small></span><svg class="ct-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></a></li>
+        </ul>
+        <img class="ct-photo" src="assets/wanda-tentang.webp" width="899" height="1360" alt="Foto Wanda Khoirunnisa" loading="lazy">
+      </div>
+      <div class="ct-stack">
+        <div class="ct-card">
+          <h3 class="ct-h">Kirim pesan</h3>
+          <p class="ct-sub">Ada pertanyaan soal proyek atau peluang magang? Tulis di sini. Pesanmu akan terbuka di aplikasi email kamu, siap dikirim.</p>
+          <form id="ct-form" novalidate>
           <div class="ct-f">
             <label for="ct-nama">Nama</label>
             <input id="ct-nama" name="nama" type="text" autocomplete="name" required aria-describedby="ct-nama-e">
@@ -3076,20 +3151,18 @@
           <button type="submit" class="ct-send">Kirim lewat email</button>
           <p class="ct-status" id="ct-status" aria-live="polite"></p>
         </form>
-      </div>
-      <div class="ct-card">
-        <h3 class="ct-h">Temukan saya</h3>
-        <p class="ct-sub">Terbuka untuk peluang magang, kolaborasi, dan networking di bidang web development, database, dan UI/UX.</p>
-        <ul class="ct-links">
-          <li class="ct-row">
-            <span class="ct-k">Email</span>
-            <a class="ct-v" href="mailto:wandakh172@gmail.com">wandakh172@gmail.com</a>
-            <button class="cp" type="button">Salin email</button>
-          </li>
-          <li class="ct-row"><span class="ct-k">LinkedIn</span><a class="ct-v" href="https://www.linkedin.com/in/wanda-khoirunnisa/" target="_blank" rel="noopener">linkedin.com/in/wanda-khoirunnisa</a></li>
-          <li class="ct-row"><span class="ct-k">GitHub</span><a class="ct-v" href="https://github.com/wandakh" target="_blank" rel="noopener">github.com/wandakh</a></li>
-          <li class="ct-row"><span class="ct-k">CV</span><a class="ct-v" href="assets/CV_Wanda_Khoirunnisa.pdf" download>Download CV (PDF)</a></li>
-        </ul>
+        </div>
+        <div class="ct-card" id="komentar" aria-labelledby="cm-h">
+          <div class="cm-head"><span class="cm-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.2 7.5L3 20.5l1.6-5.2A8.5 8.5 0 1121 11.5z"/></svg></span><h3 class="ct-h" id="cm-h">Komentar <span class="cm-count" id="cm-count">(0)</span></h3></div>
+          <form id="cm-form" novalidate>
+            <div class="ct-f"><label for="cm-nama">Nama</label><input id="cm-nama" name="nama" type="text" maxlength="40" autocomplete="name" required></div>
+            <div class="ct-f"><label for="cm-isi">Komentar</label><textarea id="cm-isi" name="isi" rows="3" maxlength="300" required></textarea></div>
+            <p class="ct-err" id="cm-err" hidden></p>
+            <button type="submit" class="ct-send">Kirim komentar</button>
+          </form>
+          <ul class="cm-list" id="cm-list" aria-live="polite"></ul>
+          <p class="ct-status" id="cm-note"></p>
+        </div>
       </div>
     </div>
   </footer>
@@ -3097,7 +3170,26 @@
   <script>
     const Q = { web: "<i>&lt;</i>h1<i>&gt;</i> Wanda Khoirunnisa <i>&lt;/</i>h1<i>&gt;</i> <b>/* siap magang */</b>", db: "<i>SELECT</i> * <i>FROM</i> wanda <i>WHERE</i> status = <b>'siap magang'</b>;", ux: "User flow: <i>Landing</i> → <i>Proyek</i> → <i>Pengalaman</i> → <b>Hubungi saya</b>" };
     const setM = m => { if (!Q[m]) return; document.body.dataset.m = m; document.querySelector('.q').innerHTML = Q[m]; document.querySelectorAll('.sw button').forEach(y => y.setAttribute('aria-pressed', y.dataset.m === m)) }; document.querySelectorAll('.sw button').forEach(x => x.addEventListener('click', () => { setM(x.dataset.m); location.hash = x.dataset.m }));
-    const smoothTo = target => { const el = document.querySelector(target); if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' }) };
+    let glideId = 0;
+    const smoothTo = target => {
+      const el = document.querySelector(target); if (!el) return;
+      const de = document.documentElement, id = ++glideId;
+      const pad = parseFloat(getComputedStyle(de).scrollPaddingTop) || 0;
+      const y0 = scrollY, y1 = Math.max(0, Math.min(el.getBoundingClientRect().top + y0 - pad, de.scrollHeight - innerHeight));
+      if (matchMedia('(prefers-reduced-motion:reduce)').matches || y1 === y0) { scrollTo(0, y1); return }
+      const dist = y1 - y0, dur = Math.min(1100, 520 + Math.abs(dist) * .16), t0 = performance.now();
+      const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const stop = () => { glideId++; };
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, stop, { once: true, passive: true }));
+      de.style.scrollBehavior = 'auto';
+      const step = now => {
+        if (id !== glideId) { de.style.scrollBehavior = ''; return }
+        const t = Math.min(1, (now - t0) / dur);
+        scrollTo(0, y0 + dist * ease(t));
+        if (t < 1) requestAnimationFrame(step); else de.style.scrollBehavior = '';
+      };
+      requestAnimationFrame(step);
+    };
     document.body.dataset.m = 'mix'; document.querySelector('.q').innerHTML = Q.db; document.querySelector('#keahlian').appendChild(document.querySelector('.a-db'));
     (() => {
       const tg = { 'Visual Data': 'web db', 'Catering Database': 'db', 'Nugasin': 'ux' }; document.querySelectorAll('.proj').forEach(p => p.dataset.t = tg[p.querySelector('h3').textContent] || '');
@@ -3126,7 +3218,10 @@
       if (!rm && 'IntersectionObserver' in window) {
         document.documentElement.classList.add('js');
         const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { threshold: .12 });
-        document.querySelectorAll('section h2,.proj,.tl>li,dl div,.certs button,.cert-t,.cg,.qp,.art').forEach(el => { el.classList.add('rv'); io.observe(el) });
+        document.querySelectorAll('section h2,footer h2,.proj,.tl>li,dl div,.certs button,.cert-t,.cg,.qp,.art,.about>*,.xp-h,.xp-item,.ab-facts,.ct-card').forEach(el => {
+          if (el.matches('.xp-item,.about>*,.ct-card')) el.style.setProperty('--d', ([...el.parentElement.children].indexOf(el) * .1) + 's');
+          el.classList.add('rv'); io.observe(el)
+        });
       }
 
       const dotNav = document.getElementById('dot-nav');
@@ -3611,9 +3706,29 @@
         const more = li.querySelector('.xp-more-in');
         more.id = 'xp-more-' + i;
         li.querySelector('.xp-btn').setAttribute('aria-controls', more.id);
-        li.querySelector('.xp-btn').addEventListener('click', () => setActive(li.classList.contains('is-active') ? null : li));
+        li.querySelector('.xp-btn').addEventListener('click', () => {
+          const open = !li.classList.contains('is-active');
+          setActive(open ? li : null);
+          if (open) setTimeout(() => { const l = li.parentElement; if (l.scrollHeight > l.clientHeight) l.scrollTo({ top: Math.max(0, li.offsetTop - 12), behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' }); }, 420);
+        });
       });
-      setActive(items[0]);
+      setActive(null);
+      const list = document.getElementById('xp-exp');
+      if (list) {
+        const edge = () => list.classList.toggle('at-end', list.scrollTop + list.clientHeight >= list.scrollHeight - 4);
+        const fit = () => {
+          const its = [...list.children];
+          if (its.length <= 3 || list.querySelector('.is-active')) return;
+          list.classList.add('xp-scroll');
+          list.style.maxHeight = 'none';
+          list.style.maxHeight = (its[3].offsetTop + 18) + 'px';
+          edge();
+        };
+        list.addEventListener('scroll', edge, { passive: true });
+        addEventListener('resize', fit);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        fit();
+      }
     })();
 
     /* Kontak: formulir membuka email dengan pesan yang sudah terisi */
@@ -3645,6 +3760,88 @@
       });
     })();
   </script>
+  <script>
+    /* Komentar. Isi CFG dengan URL dan anon key Supabase supaya komentar tampil untuk semua pengunjung.
+       Kalau dikosongkan, komentar hanya tersimpan di browser pengunjung itu sendiri. */
+    (() => {
+      const CFG = { url: '', key: '', table: 'comments' };
+      const form = document.getElementById('cm-form');
+      if (!form) return;
+      const list = document.getElementById('cm-list'), count = document.getElementById('cm-count');
+      const note = document.getElementById('cm-note'), err = document.getElementById('cm-err');
+      const remote = !!(CFG.url && CFG.key), LS = 'wk-comments';
+      const AV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.2c1.2-2 3.1-3 5.5-3s4.3 1 5.5 3"/></svg>';
+      const hdr = { apikey: CFG.key, Authorization: 'Bearer ' + CFG.key };
+      if (!remote) note.textContent = 'Komentar disimpan di perangkat ini.';
+
+      const ago = iso => {
+        const s = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
+        if (s < 60) return 'baru saja';
+        if (s < 3600) return Math.floor(s / 60) + ' menit lalu';
+        if (s < 86400) return Math.floor(s / 3600) + ' jam lalu';
+        if (s < 2592000) return Math.floor(s / 86400) + ' hari lalu';
+        return new Date(iso).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      };
+      const load = async () => {
+        if (remote) {
+          const r = await fetch(CFG.url + '/rest/v1/' + CFG.table + '?select=nama,isi,created_at&order=created_at.desc&limit=50', { headers: hdr });
+          if (!r.ok) throw new Error('load');
+          return r.json();
+        }
+        try { return JSON.parse(localStorage.getItem(LS) || '[]'); } catch (e) { return []; }
+      };
+      const save = async c => {
+        if (remote) {
+          const r = await fetch(CFG.url + '/rest/v1/' + CFG.table, { method: 'POST', headers: { ...hdr, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify(c) });
+          if (!r.ok) throw new Error('save');
+          return;
+        }
+        const all = await load();
+        all.unshift({ ...c, created_at: new Date().toISOString() });
+        try { localStorage.setItem(LS, JSON.stringify(all.slice(0, 50))); } catch (e) { throw new Error('save'); }
+      };
+      const render = items => {
+        list.replaceChildren();
+        count.textContent = '(' + items.length + ')';
+        if (!items.length) {
+          const li = document.createElement('li'); li.className = 'cm-empty'; li.textContent = 'Belum ada komentar. Tulis yang pertama.';
+          list.append(li); return;
+        }
+        items.forEach(c => {
+          const li = document.createElement('li'); li.className = 'cm-item';
+          const av = document.createElement('span'); av.className = 'cm-av'; av.innerHTML = AV;
+          const body = document.createElement('div'); body.className = 'cm-body';
+          const top = document.createElement('div'); top.className = 'cm-top';
+          const b = document.createElement('b'); b.textContent = c.nama;
+          const t = document.createElement('time'); t.dateTime = c.created_at; t.textContent = ago(c.created_at);
+          const p = document.createElement('p'); p.textContent = c.isi;
+          top.append(b, t); body.append(top, p); li.append(av, body); list.append(li);
+        });
+      };
+      const refresh = () => load().then(render).catch(() => { list.replaceChildren(); note.textContent = 'Komentar belum bisa dimuat. Coba muat ulang halaman.'; });
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const nama = form.elements.nama.value.trim(), isi = form.elements.isi.value.trim();
+        const msg = !nama ? 'Tulis namamu dulu.' : isi.length < 3 ? 'Komentar minimal 3 karakter.' : '';
+        err.textContent = msg; err.hidden = !msg;
+        if (msg) return;
+        const btn = form.querySelector('.ct-send'); btn.disabled = true;
+        try { await save({ nama, isi }); form.elements.isi.value = ''; await refresh(); }
+        catch (x) { err.textContent = 'Komentar belum terkirim. Coba lagi sebentar.'; err.hidden = false; }
+        btn.disabled = false;
+      });
+      refresh();
+    })();
+  </script>
+  <script>
+    (() => {
+      document.querySelectorAll('.pnav a').forEach(a => a.addEventListener('click', () => { a.classList.remove('pop'); void a.offsetWidth; a.classList.add('pop'); }));
+      const cue = document.querySelector('.scue');
+      if (cue) { const f = () => cue.classList.toggle('gone', scrollY > 40); addEventListener('scroll', f, { passive: true }); f(); }
+    })();
+  </script>
+ <script defer src="/_vercel/insights/script.js"></script>
 </body>
 
 </html>
