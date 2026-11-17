@@ -3130,7 +3130,7 @@
       <div class="ct-stack">
         <div class="ct-card">
           <h3 class="ct-h">Kirim pesan</h3>
-          <p class="ct-sub">Ada pertanyaan soal proyek atau peluang magang? Tulis di sini. Pesanmu akan terbuka di aplikasi email kamu, siap dikirim.</p>
+          <p class="ct-sub">Ada pertanyaan soal proyek atau peluang magang? Tulis di sini, pesanmu akan langsung terkirim ke email saya.</p>
           <form id="ct-form" novalidate>
           <div class="ct-f">
             <label for="ct-nama">Nama</label>
@@ -3147,8 +3147,10 @@
             <textarea id="ct-pesan" name="pesan" rows="5" required aria-describedby="ct-pesan-e"></textarea>
             <p class="ct-err" id="ct-pesan-e" hidden></p>
           </div>
-          <button type="submit" class="ct-send">Kirim lewat email</button>
+          <button type="submit" class="ct-send">Kirim pesan</button>
           <p class="ct-status" id="ct-status" aria-live="polite"></p>
+        </form>
+        </div>
         </form>
         </div>
         <div class="ct-card" id="komentar" aria-labelledby="cm-h">
@@ -3730,11 +3732,14 @@
       }
     })();
 
-    /* Kontak: formulir membuka email dengan pesan yang sudah terisi */
+
+   /* Kontak: kirim pesan langsung ke email lewat Web3Forms */
     (() => {
+      const ACCESS_KEY = '18c83c02-faa1-4ef0-a01e-88392dd56779';
       const form = document.getElementById('ct-form');
       if (!form) return;
       const status = document.getElementById('ct-status');
+      const btn = form.querySelector('.ct-send');
       const rules = {
         nama: v => v.trim() ? '' : 'Tulis namamu dulu.',
         email: v => /^\S+@\S+\.\S+$/.test(v.trim()) ? '' : 'Tulis alamat email yang valid, misalnya nama@email.com.',
@@ -3746,16 +3751,45 @@
         return !msg;
       };
       Object.keys(rules).forEach(n => form.elements[n].addEventListener('blur', () => { if (form.elements[n].value) check(n); }));
-      window.ctOpen = url => { window.location.href = url; };
-      form.addEventListener('submit', e => {
+
+      form.addEventListener('submit', async e => {
         e.preventDefault();
         const bad = Object.keys(rules).filter(n => !check(n));
         if (bad.length) { form.elements[bad[0]].focus(); status.textContent = ''; return; }
-        const nama = form.elements.nama.value.trim(), email = form.elements.email.value.trim(), pesan = form.elements.pesan.value.trim();
-        const subject = encodeURIComponent('Pesan dari ' + nama + ' lewat portofolio');
-        const body = encodeURIComponent(pesan + '\n\nNama: ' + nama + '\nEmail: ' + email);
-        window.ctOpen('mailto:wandakh172@gmail.com?subject=' + subject + '&body=' + body);
-        status.textContent = 'Aplikasi email kamu akan terbuka dengan pesan ini. Kalau tidak terbuka, salin alamat email di kartu sebelah.';
+
+        const nama = form.elements.nama.value.trim();
+        const email = form.elements.email.value.trim();
+        const pesan = form.elements.pesan.value.trim();
+
+        btn.disabled = true;
+        btn.textContent = 'Mengirim...';
+        status.textContent = '';
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              access_key: ACCESS_KEY,
+              subject: 'Pesan baru dari ' + nama + ' (Portofolio)',
+              from_name: nama,
+              email: email,
+              message: pesan
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            form.reset();
+            status.textContent = 'Pesan berhasil terkirim! Terima kasih sudah menghubungi.';
+          } else {
+            throw new Error(data.message);
+          }
+        } catch (err) {
+          status.textContent = 'Pesan gagal terkirim. Coba lagi atau salin email di kartu sebelah.';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Kirim pesan';
+        }
       });
     })();
   </script>
