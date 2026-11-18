@@ -3021,6 +3021,78 @@
     .pg-panel .qg-code { background: rgba(5, 12, 45, .55) }
     .pg-panel .fl-card { background: rgba(255, 255, 255, .08) }
     .pg-panel :is(.qg-chips button, .tg) { border-color: rgba(255, 255, 255, .32) }
+  
+    /* 8. Keahlian & Komentar: kartu putih, teks navy senada (#0F1536 / #4F587A, aksen biru #2563EB) */
+    body[data-m=mix] #keahlian dl { background: #fff; border-color: rgba(15, 21, 54, .14); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 36px -24px rgba(15, 21, 54, .35) }
+    body[data-m=mix] #keahlian dl > div { background: #fff; border-bottom-color: rgba(15, 21, 54, .1) }
+    body[data-m=mix] #keahlian dt { color: #2563EB; border-right-color: rgba(15, 21, 54, .1) }
+    body[data-m=mix] #keahlian dd, body[data-m=mix] #keahlian .tg:not(.tg-link) { color: #0F1536 }
+
+    .ct-card, .pg-panel { --bg: #fff; --vi: #2563EB; --tx: #0F1536; --soft: #4F587A; --line: rgba(15, 21, 54, .14); --panel: #fff; --pk: #2563EB; --pkd: #2563EB; background: #fff !important; border-color: rgba(15, 21, 54, .14); box-shadow: 0 16px 36px -24px rgba(15, 21, 54, .35); color: #0F1536 }
+    .ct-card .ct-h, .ct-card .ct-f label, .ct-card .cm-top b, .ct-card .cm-body p { color: #0F1536 }
+    .ct-card .cm-top time, .ct-card .cm-empty, .ct-card .ct-status { color: #4F587A }
+    .ct-card .cm-count { color: #2563EB }
+    .ct-card .cm-ico { background: #E8F0FF; color: #2563EB }
+    .ct-card .cm-av { background: #EEF0F8; color: #4F587A }
+    .ct-card .ct-f input, .ct-card .ct-f textarea { background: #F6F7FB; border-color: rgba(15, 21, 54, .18); color: #0F1536 }
+    .ct-card .ct-f input:focus-visible, .ct-card .ct-f textarea:focus-visible { background: #fff; outline-color: #2563EB }
+    .ct-card .ct-err { color: #B42318 }
+    .ct-card .ct-f [aria-invalid=true] { border-color: #B42318 }
+    .ct-card .ct-send { background: #2563EB; color: #fff !important }
+  
+    /* Playground: panel putih */
+    .pg-panel .qg-code { background: #F6F7FB; border-color: rgba(15, 21, 54, .14); color: #0F1536 }
+    .pg-panel .qg-code .k { color: #2563EB }
+    .pg-panel .qg-code .s { color: #1E3A8A }
+    .pg-panel .qg-code .e { color: #4F587A }
+    .pg-panel .qg-chips button { color: #0F1536; border-color: rgba(15, 21, 54, .2) }
+    .pg-panel .qg-chips button:hover { border-color: #2563EB }
+    .pg-panel .qg-chips button[aria-pressed=true] { background: #2563EB; border-color: #2563EB; color: #fff !important }
+    .pg-panel .pg-btn { background: #2563EB; color: #fff }
+    .pg-panel .pg-btn.ghost { background: transparent; color: #0F1536; box-shadow: inset 0 0 0 1px rgba(15, 21, 54, .25) }
+    .pg-panel .qg-tbl th { background: #EEF3FF; color: #2563EB }
+    .pg-panel .qg-tbl th, .pg-panel .qg-tbl td { border-color: rgba(15, 21, 54, .16); color: #0F1536 }
+    .pg-panel .qg-msg.ok { color: #15803D }
+    .pg-panel .qg-msg.bad { color: #B42318 }
+    .pg-panel .fl-card { background: #fff; border-color: rgba(15, 21, 54, .2) }
+    .pg-panel .fl-s.on .fl-card { border-color: #2563EB; box-shadow: 0 18px 40px -18px rgba(37, 99, 235, .45) }
+    .pg-panel .fl-wf i { background: #D8DBEE }
+    .pg-panel .fl-wf i.t { background: #B8BDDC }
+    .pg-panel .fl-wf i.im, .pg-panel .fl-wf .row i { background: #ECEEF8; border: 1px solid #D8DBEE }
+    .pg-panel .fl-wf i.bt { background: #2563EB }
+    .pg-panel .er-box { fill: #fff }
+    .pg-panel .fl-card { opacity: 1 !important }
+    .pg-panel .fl-s:not(.on) .fl-card { border-color: rgba(15, 21, 54, .22) }
+    .pg-panel .fl-tag { background: #2563EB; color: #fff }
+    .pg-panel .fl-arr { background: rgba(15, 21, 54, .25) }
+    .pg-panel .fl-arr::after { border-color: rgba(15, 21, 54, .25) }
+    .pg-panel .fl-arr.done::before { background: #2563EB }
+    .pg-panel .fl-arr.done::after { border-color: #2563EB }
+    .pg-panel .fl-wf i { background: #8F99BE }
+    .pg-panel .fl-wf i.t { background: #1E2A5A }
+    .pg-panel .fl-wf i.im, .pg-panel .fl-wf .row i { background: #E3E8F8; border: 1px solid #9AA4C9 }
+    .pg-panel .fl-wf i.bt { background: #2563EB }
+    /* User flow: wireframe sesuai isi portofolio */
+    .pg-panel .fl-wf.wf { gap: 7px; font-size: 10px; line-height: 1.3; color: #0F1536; text-align: left }
+    .pg-panel .wf-q { display: block; padding: 5px 7px; border-radius: 6px; background: #F1F3FA; color: #4F587A; font: 600 9px/1.5 "JetBrains Mono", monospace; overflow-wrap: anywhere }
+    .pg-panel .wf-q strong { color: #2563EB; font-weight: 700 }
+    .pg-panel .wf-h { display: block; font: 800 17px/1.12 "Space Grotesk", "Plus Jakarta Sans", sans-serif; letter-spacing: -.03em; color: #0F1536 }
+    .pg-panel .wf-h2 { display: block; font: 800 14px/1.1 "Space Grotesk", "Plus Jakarta Sans", sans-serif; letter-spacing: -.03em; color: #0F1536 }
+    .pg-panel .wf-btns, .pg-panel .wf-chips { display: flex; flex-wrap: wrap; gap: 5px }
+    .pg-panel .wf-b { display: inline-block; text-decoration: none; padding: 6px 10px; border-radius: 99px; background: #2563EB; color: #fff; font: 700 9px/1 "JetBrains Mono", monospace }
+    .pg-panel .wf-b.g { background: transparent; color: #0F1536; box-shadow: inset 0 0 0 1px rgba(15, 21, 54, .3) }
+    .pg-panel .wf-chips u { text-decoration: none; padding: 3px 7px; border-radius: 99px; color: #0F1536; box-shadow: inset 0 0 0 1px rgba(15, 21, 54, .28); font: 700 8.5px/1.2 "JetBrains Mono", monospace }
+    .pg-panel .wf-chips u.on { background: #2563EB; color: #fff; box-shadow: none }
+    .pg-panel .wf-pr > span, .pg-panel .wf-ct > span { display: block; min-width: 0; padding: 6px; border: 1px solid rgba(15, 21, 54, .18); border-radius: 7px; background: #fff }
+    .pg-panel .wf-pr b, .pg-panel .wf-ct b { display: block; margin: 0 0 5px; font: 800 9px/1.2 "Space Grotesk", "Plus Jakarta Sans", sans-serif; color: #0F1536 }
+    .pg-panel .wf-pr em { display: block; height: 5px; margin: 0 0 4px; border-radius: 3px; background: #8F99BE }
+    .pg-panel .wf-pr em.s { width: 65% }
+    .pg-panel .wf-pr small { display: inline-block; margin-top: 3px; font: 700 8px/1 "JetBrains Mono", monospace; color: #2563EB }
+    .pg-panel .wf-ct { grid-template-columns: 1fr 1fr !important }
+    .pg-panel .wf-ct .r { display: flex; align-items: center; gap: 5px; margin: 0 0 4px; font-size: 9px; color: #4F587A }
+    .pg-panel .wf-ct .r::before { content: ""; flex: 0 0 9px; height: 9px; border-radius: 3px; background: #2A2F42 }
+    .pg-panel .wf-ct em.in { display: block; margin: 0 0 4px; padding: 3px 5px; border-radius: 4px; background: #F1F3FA; border: 1px solid rgba(15, 21, 54, .14); font-style: normal; font-size: 8.5px; color: #8F99BE }
+    .pg-panel .wf-ct em.ta { padding-bottom: 12px }
   </style>
 </head>
 
@@ -3406,11 +3478,11 @@
 
       <div class="pg-panel" id="pg-flow" role="tabpanel" aria-labelledby="pg-t-flow" hidden>
         <ol class="fl-track" id="fl-track">
-          <li class="fl-s on" data-i="0"><button type="button" class="fl-card" aria-label="Langkah 1: Landing"><span class="fl-tag">Landing</span><span class="fl-wf"><i class="t"></i><i></i><i class="w2"></i><i class="bt"></i></span></button></li>
+          <li class="fl-s on" data-i="0"><button type="button" class="fl-card" aria-label="Langkah 1: Landing"><span class="fl-tag">Landing</span><span class="fl-wf wf"><span class="wf-q"><strong>SELECT</strong> * <strong>FROM</strong> wanda <strong>WHERE</strong> status = <strong>'siap magang'</strong>;</span><span class="wf-h">Welcome to my<br>Portfolio</span><span class="wf-btns"><u class="wf-b">View Projects</u><u class="wf-b g">Download CV</u></span></span></button></li>
           <li class="fl-arr" aria-hidden="true"></li>
-          <li class="fl-s" data-i="1"><button type="button" class="fl-card" aria-label="Langkah 2: Proyek"><span class="fl-tag">Proyek</span><span class="fl-wf"><i class="t"></i><span class="row"><i></i><i></i><i></i></span><i class="w2"></i></span></button></li>
+          <li class="fl-s" data-i="1"><button type="button" class="fl-card" aria-label="Langkah 2: Proyek"><span class="fl-tag">Proyek</span><span class="fl-wf wf"><span class="wf-h2">Portofolio</span><span class="wf-chips"><u class="on">Semua</u><u>Web</u><u>Database</u><u>UI/UX</u></span><span class="row wf-pr"><span><b>Visual Data</b><em></em><em class="s"></em><small>GitHub</small></span><span><b>Catering Database</b><em></em><em class="s"></em><small>GitHub</small></span><span><b>Nugasin</b><em></em><em class="s"></em><small>Figma</small></span></span></span></button></li>
           <li class="fl-arr" aria-hidden="true"></li>
-          <li class="fl-s" data-i="2"><button type="button" class="fl-card" aria-label="Langkah 3: Kontak"><span class="fl-tag">Kontak</span><span class="fl-wf"><i class="t"></i><i class="im"></i><i class="w2"></i><i class="bt"></i></span></button></li>
+          <li class="fl-s" data-i="2"><button type="button" class="fl-card" aria-label="Langkah 3: Kontak"><span class="fl-tag">Kontak</span><span class="fl-wf wf"><span class="row wf-ct"><span><b>Temukan saya</b><span class="r">LinkedIn</span><span class="r">GitHub</span><span class="r">Email</span><span class="r">Unduh CV</span></span><span><b>Kirim pesan</b><em class="in">Nama</em><em class="in">Email</em><em class="in ta">Pesan</em><u class="wf-b">Kirim</u></span></span></span></button></li>
           <span class="fl-cur" id="fl-cur" aria-hidden="true">Pengunjung</span>
         </ol>
         <div class="fl-info">
