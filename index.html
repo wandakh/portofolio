@@ -3093,7 +3093,95 @@
     .pg-panel .wf-ct .r::before { content: ""; flex: 0 0 9px; height: 9px; border-radius: 3px; background: #2A2F42 }
     .pg-panel .wf-ct em.in { display: block; margin: 0 0 4px; padding: 3px 5px; border-radius: 4px; background: #F1F3FA; border: 1px solid rgba(15, 21, 54, .14); font-style: normal; font-size: 8.5px; color: #8F99BE }
     .pg-panel .wf-ct em.ta { padding-bottom: 12px }
-  </style>
+  
+    /* ===== Perbaikan: tombol proyek seragam, kartu sama tinggi, komentar rapi ===== */
+    body[data-m] #proyek .proj-track { align-items: stretch }
+    body[data-m] #proyek .proj-track .proj-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px }
+    body[data-m] #proyek .proj-track .proj-links :is(.more, .btn) {
+      box-sizing: border-box !important; display: inline-flex !important; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; margin: 0 !important; padding: 0 22px !important; border-radius: 999px !important;
+      border: 2px solid transparent; font: 700 16px/1 inherit; font-family: inherit; white-space: nowrap; text-decoration: none; cursor: pointer }
+    body[data-m] #proyek .proj-track .proj-links :is(.more, .btn) svg { width: 16px; height: 16px; flex: none }
+
+    .ct-grid { align-items: stretch }
+    .ct-stack { grid-template-rows: 1fr }
+    .ct-stack > .ct-card { height: 100% }
+    #komentar { grid-column: 1 / -1 }
+    @media (min-width: 901px) {
+      #komentar { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(20px, 3vw, 32px); align-items: start }
+      #komentar .cm-head { grid-column: 1 / -1 }
+      #komentar #cm-form { grid-column: 1; grid-row: 2 }
+      #komentar .ct-status { grid-column: 1; grid-row: 3 }
+      #komentar .cm-list { grid-column: 2; grid-row: 2 / span 2; margin-top: 0 }
+    }
+
+    /* Pop-up detail proyek */
+    html:has(dialog.proj-dialog[open]) { overflow: hidden }
+    .proj-dialog { --tx: #E9EBF3; --soft: #A9B2CA; --line: rgba(255, 255, 255, .22); padding: 0; border: 1px solid rgba(255, 255, 255, .16); border-radius: 26px; background: #0B1020; color: #E9EBF3; width: min(680px, calc(100vw - 32px)); max-height: min(88vh, 840px); overflow: hidden; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .7) }
+    .proj-dialog::backdrop { background: rgba(3, 6, 18, .72); backdrop-filter: blur(4px) }
+    .proj-dialog[open] { animation: pdin .25s cubic-bezier(.2, .7, .2, 1) }
+    @keyframes pdin { from { opacity: 0; transform: translateY(14px) scale(.98) } }
+    @media (prefers-reduced-motion: reduce) { .proj-dialog[open] { animation: none } }
+    .pd-box { position: relative; max-height: min(88vh, 840px); overflow-y: auto; padding: 18px 18px 28px }
+    .pd-x { all: unset; box-sizing: border-box; position: absolute; top: 26px; right: 26px; z-index: 2; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: rgba(11, 16, 32, .75); color: #fff; border: 1px solid rgba(255, 255, 255, .25); cursor: pointer; transition: background .2s }
+    .pd-x:hover { background: #2563EB }
+    .pd-x:focus-visible { outline: 3px solid #60A5FA; outline-offset: 2px }
+    .pd-x svg { width: 18px; height: 18px }
+    .pd-body { display: flex; flex-direction: column; gap: 12px }
+    .pd-body > * { margin: 0 }
+    .pd-body .shot { margin-bottom: 6px }
+    .pd-body h3 { padding: 0 8px; font-size: clamp(24px, 4vw, 30px); line-height: 1.15; color: #fff }
+    .pd-body > p, .pd-body > ul { padding-left: 8px; padding-right: 8px; font-size: 16px; line-height: 1.6; color: #C9D0E4 }
+    .pd-body .sub { font-size: 17px; font-weight: 600; color: #8CBBFF }
+    .pd-body ul { padding-left: 28px; display: block; columns: 1 }
+    .pd-body li { margin: 4px 0 }
+    .pd-body .tgs { padding: 0 8px }
+    .pd-body .proj-links { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px 8px 0 }
+    .pd-body .proj-links .btn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 22px; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none }
+    .pd-body .meta { font-size: 16px; padding: 0 8px; color: #C9D0E4 }
+    .pd-body .meta b { color: #fff }
+    .pd-body .tg { color: #E9EBF3 }
+
+    /* ===== Penyeragaman: sudut (pil untuk kontrol, 24px kartu, 16px gambar), jarak, satu baris kontrol ===== */
+    .pf-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin: 0 0 24px }
+    #proyek .tabs { display: inline-grid; grid-template-columns: repeat(2, auto); gap: 4px; padding: 5px; margin: 0; max-width: none; border-radius: 999px; box-shadow: none }
+    #proyek .tabs button { flex-direction: row; justify-content: center; gap: 8px; padding: 10px 24px; border-radius: 999px; font-size: 15px }
+    #proyek .tabs button svg { width: 18px; height: 18px }
+    #proyek .tab-ind { top: 5px; bottom: 5px; border-radius: 999px; box-shadow: none }
+    #proyek .chips { margin: 0 }
+    #proyek .chips[hidden] { display: none }
+    #proyek .chips button { border-radius: 999px; padding: 9px 18px }
+    body[data-m] #proyek .proj-track .proj { border-radius: 24px }
+    body[data-m] #proyek .proj-track .shot { border-radius: 16px }
+    .proj-dialog { border-radius: 24px }
+    @media (max-width: 640px) {
+      .pf-bar { flex-direction: column; align-items: stretch; gap: 14px }
+      #proyek .tabs { display: grid; grid-template-columns: 1fr 1fr }
+      #proyek .tabs button { padding: 10px 12px }
+      /* pop-up jadi lembar dari bawah di HP */
+      .proj-dialog { width: 100%; max-width: 100%; margin: auto 0 0; border-radius: 24px 24px 0 0; border-bottom: 0; max-height: 90vh }
+      .proj-dialog[open] { animation: pdsheet .3s cubic-bezier(.2, .7, .2, 1) }
+      @keyframes pdsheet { from { transform: translateY(100%) } }
+      .pd-box { max-height: 90vh; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)) }
+    }
+
+    /* ===== Tombol kartu sama lebar + jarak; tab lebih besar ===== */
+    body[data-m] #proyek .proj-track .proj-links { gap: 12px; padding-top: 22px }
+    body[data-m] #proyek .proj-track .proj-links { flex-direction: row !important }
+    body[data-m] #proyek .proj-track .proj-links :is(.more, .btn) { flex: 1 1 0 !important; min-width: 150px; width: auto !important; height: auto !important; min-height: 48px; align-self: auto !important }
+    #proyek .tabs button { min-height: 52px; padding: 12px 30px; font-size: 16px }
+    #proyek .tabs button svg { width: 20px; height: 20px }
+    @media (max-width: 640px) {
+      #proyek .tabs { padding: 6px; gap: 6px }
+      #proyek .tabs button { min-height: 56px; padding: 12px 10px; font-size: 16px }
+      #proyek .tab-ind { top: 6px; bottom: 6px }
+    }
+
+    /* ===== Gambar seragam (rasio tetap) dan judul kartu seragam ===== */
+    body[data-m] #proyek .proj-track .shot { box-sizing: border-box; flex: none; width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; padding: 14px }
+    body[data-m] #proyek .proj-track .shot img { width: 100%; height: 100%; object-fit: contain }
+    body[data-m] #proyek .proj-track .proj h3 { font: 700 26px/1.15 "Space Grotesk", Inter, sans-serif; letter-spacing: -.02em; margin: 0 0 6px; transform: none !important }
+</style>
 </head>
 
 <body id="top">
@@ -3533,7 +3621,6 @@
           <p class="ct-status" id="ct-status" aria-live="polite"></p>
         </form>
         </div>
-        </form>
         </div>
         <div class="ct-card" id="komentar" aria-labelledby="cm-h">
           <div class="cm-head"><span class="cm-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.2 7.5L3 20.5l1.6-5.2A8.5 8.5 0 1121 11.5z"/></svg></span><h3 class="ct-h" id="cm-h">Komentar <span class="cm-count" id="cm-count">(0)</span></h3></div>
@@ -3546,7 +3633,6 @@
           <ul class="cm-list" id="cm-list" aria-live="polite"></ul>
           <p class="ct-status" id="cm-note"></p>
         </div>
-      </div>
     </div>
   </footer>
 
@@ -3942,25 +4028,42 @@
       const rm = ({ matches: false });
       document.documentElement.classList.add('carousel-on');
 
+      /* Pop-up detail proyek: kartu tetap rapi dan sama tinggi */
+      const dlg = document.createElement('dialog');
+      dlg.className = 'proj-dialog';
+      dlg.setAttribute('aria-labelledby', 'pd-title');
+      dlg.innerHTML = '<div class="pd-box"><button type="button" class="pd-x" aria-label="Tutup detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pd-body"></div></div>';
+      (document.getElementById('proyek') || document.body).append(dlg);
+      const pdBody = dlg.querySelector('.pd-body');
+      const openDetail = card => {
+        const main = card.querySelector(':scope > div:first-child');
+        const pick = sel => { const n = card.querySelector(sel); return n ? n.cloneNode(true) : null; };
+        const title = pick('h3'); if (title) title.id = 'pd-title';
+        const desc = main && [...main.children].find(n => n.tagName === 'P' && !n.className);
+        const parts = [pick('.shot'), title, pick('.sub'), desc && desc.cloneNode(true), pick('ul'), pick('.meta'), pick('.tgs')];
+        const links = document.createElement('div');
+        links.className = 'proj-links';
+        card.querySelectorAll('.proj-links a').forEach(x => links.append(x.cloneNode(true)));
+        parts.push(links);
+        pdBody.replaceChildren(...parts.filter(Boolean));
+        dlg.showModal();
+        dlg.querySelector('.pd-box').scrollTop = 0;
+      };
+      dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('.pd-x')) dlg.close(); });
+
       track.querySelectorAll('.proj').forEach((card, i) => {
         const links = card.querySelector('.proj-links');
         const list = card.querySelector('ul');
         if (!links || !list) return;
-        list.id = 'proj-fitur-' + i;
         const more = document.createElement('button');
         more.type = 'button';
         more.className = 'more';
-        more.setAttribute('aria-expanded', 'false');
-        more.setAttribute('aria-controls', list.id);
+        more.setAttribute('aria-haspopup', 'dialog');
         const label = document.createElement('span');
         label.textContent = 'Details';
         more.append(label);
-        more.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>');
-        more.addEventListener('click', () => {
-          const open = card.classList.toggle('open');
-          more.setAttribute('aria-expanded', open);
-          label.textContent = open ? 'Tutup' : 'Details';
-        });
+        more.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>');
+        more.addEventListener('click', () => openDetail(card));
         links.prepend(more);
       });
 
@@ -4418,6 +4521,21 @@
       document.querySelectorAll('.pnav a').forEach(a => a.addEventListener('click', () => { a.classList.remove('pop'); void a.offsetWidth; a.classList.add('pop'); }));
       const cue = document.querySelector('.scue');
       if (cue) { const f = () => cue.classList.toggle('gone', scrollY > 40); addEventListener('scroll', f, { passive: true }); f(); }
+    })();
+  </script>
+ <script>
+    /* Tab Proyek/Sertifikat dan filter dijadikan satu baris */
+    (() => {
+      const tabs = document.querySelector('#proyek .tabs'), panel = document.getElementById('panel-proyek');
+      const chips = panel && panel.querySelector('.chips');
+      if (!tabs || !chips) return;
+      const bar = document.createElement('div');
+      bar.className = 'pf-bar';
+      tabs.before(bar);
+      bar.append(tabs, chips);
+      const sync = () => { chips.hidden = panel.hidden; };
+      new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+      sync();
     })();
   </script>
  <script defer src="/_vercel/insights/script.js"></script>
